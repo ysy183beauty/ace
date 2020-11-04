@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+    <li id="sql1" value="SELECT * FROM T_INFO f WHERE f.NAME like ? and f.REGION like ?" description="查询T_INFO所有数据信息"></li>
+    <li id="sql5" value="SELECT * FROM T_ORG g where g.ORG_NAME like ? and g.ORG_PROVICE=?" description="查询所有组织信息"></li>
+    <li id="sql2" value="INSERT INTO T_BASE_INFO_SYS(ID,FIELDNAME,FIELDTYPE,FIELDLENGTH,FIELDLABEL,LISTDISPLAY,FORMDISPLAY,QUERYDISPLAY,TABLENAME)
+     VALUES(ID_SEQ.nextval,:fieldname,:fieldtype,:fieldlength,:fieldlabel,:listdisplay,:formdisplay,:querydisplay,:tablename) " description="批量插入配置信息"></li>
+    <li id="sql3" value="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME= ?" description="通过表名查询配置信息"></li>
+    <li id="sql4" value="DELETE FROM T_BASE_INFO_SYS WHERE TABLENAME=?" description="通过表名删除配置信息"></li>
+    <li id="sql6" value="SELECT  * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.LISTDISPLAY=?" description="列表是否显示"></li>
+    <li id="sql7" value="SELECT  * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.QUERYDISPLAY=?" description="查询条件是否显示"></li>
+    <li id="sql8" value="UPDATE T_BASE_INFO_SYS t set t.STATUSMAP=? WHERE t.ID=?" description="更新状态信息"></li>
+    <li id="sql9" value="UPDATE T_BASE_INFO_SYS t set t.URL=? WHERE t.ID=?" description="更新服务地址信息"></li>
+    <li id="sql10" value="select * from T_BASE_INFO_SYS t WHERE t.ID=?" description="主键查询状态信息"></li>
+</sqls>

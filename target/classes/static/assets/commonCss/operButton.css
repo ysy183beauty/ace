@@ -1,0 +1,47 @@
+.queryClass{background-color: #3932aa !important;border-color:white;width: 77px;
+    font-size: 16px;margin-right:2px;
+    color: white;padding: 6px 12px;
+}
+.resetClass{
+    background-color:#74ABD7!important;
+    border-color:white!important;
+    width: 77px;font-size: 13px;margin-right: -8px;
+}
+.addClass{
+    background-color: #48c586!important;
+    border-color:white!important;
+    width: 77px;font-size: 13px;margin-right: -8px;
+}
+.mulDelClass{
+    background-color:#FF892A!important;
+    border-color:white!important;
+    width: 100px;font-size: 13px;margin-right: -8px;
+}
+.transferClass{
+    background-color:#da9b0c!important;
+    border-color:white!important;
+    width: 100px;font-size: 13px;margin-right: -8px;
+}
+.queryConnditionCls{
+    background-color: #5048c5!important;
+    border-color: white!important;
+    width: 101px;
+    font-size: 13px;
+    margin-right: -8px;
+}
+.listClass{
+    background-color: #48c586!important;
+    border-color:white!important;
+    width: 101px;font-size: 13px;margin-right: -8px;
+}
+.editClass{
+    background-color:#ffb752!important;
+    border-color:white!important;
+    width: 77px;font-size: 13px;margin-right: -8px;
+}
+.queryCondition{
+    line-height: 16px;
+}
+.queryInfo{
+    margin-left: 7px;
+}

@@ -1,0 +1,225 @@
+/*
+    Created on : 2015-8-11, 16:18:09
+    Author     : joe
+*/
+
+.close-tab {
+    font-size: 10px;
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    padding-left: 25px;
+    z-index: 1;
+    cursor: hand;
+    cursor: pointer;
+    color: #94A6B0;
+}
+.close-tab:hover {
+	color: red
+}
+
+.iframeClass {
+    z-index: 1;
+    visibility: inherit;
+    width: 100%;
+    frameborder: 'no';
+    border: 0;
+    marginwidth: 0;
+    marginheight: 0;
+    scrolling-x: 'no';
+    scrolling-y: auto;
+    allowtransparency: true;
+}
+
+.tab-drop {
+    margin-right: 30px;
+}
+
+.rightMenu {
+    position: absolute;
+    width: 150px;
+    border: 1px solid #ddd;
+    z-index: 99;
+    display: none;
+}
+
+.dragBack {
+    background-color: #ddd;
+}
+
+/* ========================================= */
+@media print {
+	.no-print,
+	.main-sidebar,
+	.left-side,
+	.main-header,
+	.content-header {
+		display: none !important
+	}
+	.content-wrapper,
+	.right-side,
+	.main-footer {
+		margin-left: 0 !important;
+		min-height: 0 !important;
+		-webkit-transform: translate(0, 0) !important;
+		-ms-transform: translate(0, 0) !important;
+		-o-transform: translate(0, 0) !important;
+		transform: translate(0, 0) !important
+	}
+	.fixed .content-wrapper,
+	.fixed .right-side {
+		padding-top: 0 !important
+	}
+	.invoice {
+		width: 100%;
+		border: 0;
+		margin: 0;
+		padding: 0
+	}
+	.invoice-col {
+		float: left;
+		width: 33.3333333%
+	}
+	.table-responsive {
+		overflow: auto
+	}
+	.table-responsive>.table tr th,
+	.table-responsive>.table tr td {
+		white-space: normal !important
+	}
+}
+
+.content-tabs {
+	border-bottom: solid 2px #e7ebee;
+	background: #fff !important;
+	border-top: none;
+	height: 41px
+}
+
+.content-tabs .page-tabs a.active {
+	background: whitesmoke;
+	color: #fff !important;
+	border-right: solid 1px #e7ebee
+}
+
+/*.content-tabs .roll-left {*/
+	/*border-right: solid 1px #e7ebee*/
+/*}*/
+
+.content-tabs .roll-right {
+	border-left: solid 1px #e7ebee
+}
+
+@media (min-width:768px) {
+	.nav-small #nav-col {
+		width: 64px
+	}
+	.nav-small #content-wrapper {
+		margin-left: 64px
+	}
+	.content-tabs {
+		overflow: hidden;
+		position: relative;
+		height: 42px;
+		line-height: 39.5px;
+		background: #fafafa;
+		border-bottom: solid 2px #ddd;
+		font-size: 12px;
+	}
+	.content-tabs .roll-nav {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		color: #475059;
+		z-index: 2;
+		top: 0
+	}
+	.content-tabs .roll-left {
+		left: 0;
+		/*border-right: solid 1px #ddd*/
+	}
+	.content-tabs .roll-right {
+		right: 0;
+		border-left: solid 1px #ddd
+	}
+	.content-tabs button {
+		background: #fff;
+		border: 0;
+		height: 39px;
+		line-height: 39px;
+		width: 40px;
+		outline: 0
+	}
+	.content-tabs button:hover {
+		background: #fafafa
+	}
+	.content-tabs button i {
+		color: #999
+	}
+	.content-tabs nav.page-tabs {
+		margin-left: 40px;
+		width: 100000px;
+		height: 40px;
+		overflow: hidden
+	}
+	.content-tabs nav.page-tabs .page-tabs-content {
+		float: left;
+	    top: 0px;
+    	border-bottom: none;
+	}
+	.content-tabs .page-tabs a {
+		display: block;
+		float: left;
+		padding: 11px 15px;
+		padding-right: 8px;
+		text-decoration: none;
+		color: #475059;
+		border-top: none;
+		border-bottom: none;
+		border-right: 1px solid #c5d0dc;
+	}
+	.content-tabs .page-tabs a:first-child {
+		padding-right: 15px
+	}
+	.content-tabs .page-tabs a i {
+		margin-top: -10px;
+		right: 0px;
+		position: relative;
+		color: #999
+	}
+	.content-tabs .page-tabs a i:hover {
+		color: #c00 !important
+	}
+	.content-tabs .page-tabs a.active {
+		background: #2c3e50;
+		color: #fff;
+		border-right: solid 1px #2c3e50
+	}
+	.content-tabs .page-tabs a.active i:hover {
+		color: #fff !important
+	}
+	.content-tabs .roll-right.tabRight {
+		right: 40px
+	}
+	.content-tabs .roll-right.btn-group {
+		right: 40px;
+		width: 80px;
+		padding: 0
+	}
+	.content-tabs .roll-right.btn-group button {
+		width: 80px
+	}
+	.content-tabs .roll-right.tabExit {
+		background: #fff;
+		height: 39px;
+		width: 40px;
+		outline: 0
+	}
+}
+
+@media (max-width:768px) {
+	.content-tabs {
+		display: none
+	}
+}
