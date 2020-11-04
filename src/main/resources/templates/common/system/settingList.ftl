@@ -243,6 +243,22 @@
                             }
                         }
                     }
+                },
+                {
+                    field:'querystatusmap',
+                    title:'状态信息(query)',
+                    editable:{
+                        type: "text",
+                        title: "状态信息",
+                        disabled: false,
+                        emptytext: "空文本",
+                        mode: "inline",//编辑框的模式：支持popup和inline两种模式，默认是popup
+                       /* validate: function (value) { //字段验证
+                           if (!$.trim(value)) {
+                                return '不能为空';
+                            }
+                        }*/
+                    }
                 }
             ]
         });

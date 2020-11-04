@@ -12,6 +12,7 @@ public class BaseInfoSys {
     private String tablename;//表名
     private String statusmap;//存放下拉框固定值
     private String url;//存放下拉框服务器地址
+    private String querystatusmap;//查询和表单使用的下拉框固定值
     public BaseInfoSys(){}
     public Integer getId() {
         return id;
@@ -90,5 +91,13 @@ public class BaseInfoSys {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getQuerystatusmap() {
+        return querystatusmap;
+    }
+
+    public void setQuerystatusmap(String querystatusmap) {
+        this.querystatusmap = querystatusmap;
     }
 }

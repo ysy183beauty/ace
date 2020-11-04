@@ -140,7 +140,7 @@
                 }
             },{
                 field:"statusmap",
-                title:"状态信息",
+                title:"状态信息(list)",
                 align:"center",
                 valign:"middle",
                 sortable:"true",
