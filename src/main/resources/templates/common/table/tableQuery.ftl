@@ -57,24 +57,24 @@
                            <label class="sr-only" for="product_line">${item.fieldlabel}</label>
                            <div class="input-group">
                                <div class="input-group-addon">${item.fieldlabel}</div>
-                               <select class="form-control" name="${item.fieldname}" id="${item.fieldname}">
+                               <select class="form-control" name="${item.fieldname}" id="${item.fieldname}" onchange="doTest();">
                                </select>
                            </div>
                        </div>
                        <script type="text/javascript">
-                           $(function () {
-                               $("#${item.fieldname}").change(function(){
-                                   var params={};
-                                   var data=dealObj.doAjax('${item.url}',params);
+                           var url='${item.url}';
+                           if(url.length>0){
+                               var params={};
+                               var data=dealObj.doAjax(url,params,function (data) {
                                    if(data!=undefined&&data.length>0){
                                        var html='<option value="">请选择</option>';
                                        for(var i=0;i<data.length;i++){
-                                           html+='<option value="'+data[i].labValue+'">'+data[i].labText+'</option>';
+                                           html+='<option value="'+data[i].LABVALUE+'">'+data[i].LABTEXT+'</option>';
                                        }
                                        $("#${item.fieldname}").append(html);
                                    }
                                });
-                           });
+                           }
                        </script>
                    <#else>
                        <div class="form-group">

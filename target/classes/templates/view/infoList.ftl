@@ -17,7 +17,7 @@
 <#assign isSingleSelect=true/>
 <#assign operateMap={"edit":true,"remove":true}/>
 <#assign queryFields=queryFields?eval/>
-<#assign operInfos="query,reset"/>
+<#assign operInfos="query,reset,add"/>
 <#assign cols=cols?eval/>
 <@table tableId url cols isSingleSelect operateMap queryFields operInfos/>
 <script type="text/javascript">

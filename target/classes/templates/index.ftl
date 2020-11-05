@@ -39,9 +39,9 @@
                         url: '/business/view/selectBusinessInfo'
                     }, {
                         id: '22',
-                        text: '编码管理',
+                        text: '组织列表',
                         icon: 'glyphicon glyphicon-tasks',
-                        url: '/view/codeList'
+                        url: '/business/view/toOrgList'
                     }]
                 }]
             });

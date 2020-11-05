@@ -11,4 +11,5 @@
     <li id="sql8" value="UPDATE T_BASE_INFO_SYS t set t.STATUSMAP=? WHERE t.ID=?" description="更新状态信息"></li>
     <li id="sql9" value="UPDATE T_BASE_INFO_SYS t set t.URL=? WHERE t.ID=?" description="更新服务地址信息"></li>
     <li id="sql10" value="select * from T_BASE_INFO_SYS t WHERE t.ID=?" description="主键查询状态信息"></li>
+    <li id="sql11" value="SELECT g.ORG_CODE as labValue,g.ORG_PROVICE as labText FROM T_ORG g GROUP BY g.ORG_CODE,g.ORG_PROVICE" description="查询所有省份信息"></li>
 </sqls>
