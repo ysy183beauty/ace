@@ -3,48 +3,48 @@ package com.ace.business.entity;
 import java.math.BigDecimal;
 
 public class TOrg {
-    private BigDecimal orgId;
+    private BigDecimal org_id;
 
-    private String orgName;
+    private String org_name;
 
-    private String orgAddress;
+    private String org_address;
 
-    private String orgProvice;
+    private String org_provice;
 
     private Long status;
 
-    private String orgCode;
+    private String org_code;
 
-    public BigDecimal getOrgId() {
-        return orgId;
+    public BigDecimal getOrg_id() {
+        return org_id;
     }
 
-    public void setOrgId(BigDecimal orgId) {
-        this.orgId = orgId;
+    public void setOrg_id(BigDecimal org_id) {
+        this.org_id = org_id;
     }
 
-    public String getOrgName() {
-        return orgName;
+    public String getOrg_name() {
+        return org_name;
     }
 
-    public void setOrgName(String orgName) {
-        this.orgName = orgName == null ? null : orgName.trim();
+    public void setOrg_name(String org_name) {
+        this.org_name = org_name;
     }
 
-    public String getOrgAddress() {
-        return orgAddress;
+    public String getOrg_address() {
+        return org_address;
     }
 
-    public void setOrgAddress(String orgAddress) {
-        this.orgAddress = orgAddress == null ? null : orgAddress.trim();
+    public void setOrg_address(String org_address) {
+        this.org_address = org_address;
     }
 
-    public String getOrgProvice() {
-        return orgProvice;
+    public String getOrg_provice() {
+        return org_provice;
     }
 
-    public void setOrgProvice(String orgProvice) {
-        this.orgProvice = orgProvice == null ? null : orgProvice.trim();
+    public void setOrg_provice(String org_provice) {
+        this.org_provice = org_provice;
     }
 
     public Long getStatus() {
@@ -55,11 +55,11 @@ public class TOrg {
         this.status = status;
     }
 
-    public String getOrgCode() {
-        return orgCode;
+    public String getOrg_code() {
+        return org_code;
     }
 
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode == null ? null : orgCode.trim();
+    public void setOrg_code(String org_code) {
+        this.org_code = org_code;
     }
 }
