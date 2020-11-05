@@ -12,33 +12,13 @@
     <script src="${ctx}/static/assets/js/common/common.js"></script>
 </head>
 <body>
-<#assign tableId="table-list-id"/>
-<#assign url="/business/query/selectAllInfos"/>
+<#assign tableId="table-orglist-id"/>
+<#assign url="/business/query/selectOrgs"/>
 <#assign isSingleSelect=true/>
 <#assign operateMap={"edit":true,"remove":true}/>
 <#assign queryFields=queryFields?eval/>
-<#assign operInfos="query,reset,add"/>
+<#assign operInfos="query,reset"/>
 <#assign cols=cols?eval/>
 <@table tableId url cols isSingleSelect operateMap queryFields operInfos/>
-<script type="text/javascript">
-    //编辑信息
-    function doEdit(row) {
-        console.log(row);
-    }
-    //删除信息
-    function doDel(row) {
-        layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
-            layer.msg("确定");
-        });
-    }
-    //重置
-    function doReset() {
-        dealObj.doReset('queryForm');
-    }
-    //点击查询按钮
-    function doQuery() {
-        dealObj.doQuery('${tableId}');
-    }
-</script>
 </body>
 </html>
