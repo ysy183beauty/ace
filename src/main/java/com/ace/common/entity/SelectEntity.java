@@ -1,4 +1,4 @@
-package com.ace.business.entity;
+package com.ace.common.entity;
 
 public class SelectEntity {
     private String labValue;//值

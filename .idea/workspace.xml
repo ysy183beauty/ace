@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="69a9c333-ea0e-4027-b8c6-b000d4fe921f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/business/entity/TOrg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/business/entity/TOrg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/table/tableContent.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/table/tableContent.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ace/business/entity/TOrg.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ace/business/entity/TOrg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/business/controller/BusinessQueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/business/controller/BusinessQueryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/business/entity/SelectEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/common/entity/SelectEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/common/table/tableContent.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/common/table/tableContent.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,7 @@
       <workItem from="1604486360044" duration="14145000" />
       <workItem from="1604501666963" duration="1564000" />
       <workItem from="1604536416979" duration="11476000" />
-      <workItem from="1604573785801" duration="5126000" />
+      <workItem from="1604573785801" duration="6731000" />
     </task>
     <task id="LOCAL-00001" summary="一次提交">
       <created>1604501364000</created>
@@ -139,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604577006324</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="第二次提交">
+      <created>1604579115331</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1604579115331</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,10 +170,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1604384425705" />
-    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604577002181">
+    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604579111817">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604577002181" />
+    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604579111817" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1604500878111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

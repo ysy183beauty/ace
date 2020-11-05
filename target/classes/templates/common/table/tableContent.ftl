@@ -36,7 +36,7 @@
      columns.push(rowIdex);
      <#list cols as item>
          var info;
-         <#assign field=item.fieldname?lower_case>
+         <#assign field=item.fieldname?lower_case?replace("_","")>
          <#--判断是否为主键，状态信息 -->
          <#if field?contains("id")>
          <#assign primaryKey=field>
