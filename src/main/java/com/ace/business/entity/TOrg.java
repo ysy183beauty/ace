@@ -3,48 +3,48 @@ package com.ace.business.entity;
 import java.math.BigDecimal;
 
 public class TOrg {
-    private BigDecimal org_id;
+    private BigDecimal orgid;
 
-    private String org_name;
+    private String orgname;
 
-    private String org_address;
+    private String orgaddress;
 
-    private String org_provice;
+    private String orgprovice;
 
     private Long status;
 
-    private String org_code;
+    private String orgcode;
 
-    public BigDecimal getOrg_id() {
-        return org_id;
+    public BigDecimal getOrgid() {
+        return orgid;
     }
 
-    public void setOrg_id(BigDecimal org_id) {
-        this.org_id = org_id;
+    public void setOrgid(BigDecimal orgid) {
+        this.orgid = orgid;
     }
 
-    public String getOrg_name() {
-        return org_name;
+    public String getOrgname() {
+        return orgname;
     }
 
-    public void setOrg_name(String org_name) {
-        this.org_name = org_name;
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
     }
 
-    public String getOrg_address() {
-        return org_address;
+    public String getOrgaddress() {
+        return orgaddress;
     }
 
-    public void setOrg_address(String org_address) {
-        this.org_address = org_address;
+    public void setOrgaddress(String orgaddress) {
+        this.orgaddress = orgaddress;
     }
 
-    public String getOrg_provice() {
-        return org_provice;
+    public String getOrgprovice() {
+        return orgprovice;
     }
 
-    public void setOrg_provice(String org_provice) {
-        this.org_provice = org_provice;
+    public void setOrgprovice(String orgprovice) {
+        this.orgprovice = orgprovice;
     }
 
     public Long getStatus() {
@@ -55,11 +55,11 @@ public class TOrg {
         this.status = status;
     }
 
-    public String getOrg_code() {
-        return org_code;
+    public String getOrgcode() {
+        return orgcode;
     }
 
-    public void setOrg_code(String org_code) {
-        this.org_code = org_code;
+    public void setOrgcode(String orgcode) {
+        this.orgcode = orgcode;
     }
 }
