@@ -1,5 +1,6 @@
 package com.ace.business.controller;
 
+import com.ace.business.entity.OperButton;
 import com.ace.common.service.CommonService;
 import com.ace.sysytem.entity.BaseInfoSys;
 import com.alibaba.fastjson.JSON;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,5 +56,24 @@ public class BusinessViewController {
         mv.addObject("queryFields",JSON.toJSONString(queryFields));
         mv.addObject("cols",JSON.toJSONString(cols));
         return  mv;
+    }
+    //新增
+    @RequestMapping(value ="/toAddPage")
+    public ModelAndView toAddPage(){
+        //按钮信息
+        List<OperButton> operButtons=new ArrayList<>();
+        operButtons.add(new OperButton("保存","btn-success","doSave"));
+        operButtons.add(new OperButton("取消","btn-danger","doCancel"));
+        List<Object> params=new ArrayList<>();
+        params.add("t_info");
+        params.add("1");
+        List list = commonService.selectList(commonService.selectSql("sql12"), params.toArray());
+        String queryJson=JSON.toJSONString(list);
+        List<BaseInfoSys> formList= JSONObject.parseArray(queryJson,BaseInfoSys.class);
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("/view/infoEdit");
+        mv.addObject("buttonOper",JSON.toJSONString(operButtons));
+        mv.addObject("formList",JSON.toJSONString(formList));
+        return mv;
     }
 }

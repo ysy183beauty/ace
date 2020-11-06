@@ -78,5 +78,10 @@ var dealObj={
             data [this.name] = this.value;
         });
         return JSON.stringify(data);
+    },
+    //关闭跳出层
+    doCloseLayer:function () {
+        var index = parent.layer.getFrameIndex(window.name);
+        top.layer.close(index);
     }
 };

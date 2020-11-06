@@ -39,6 +39,14 @@
     function doQuery() {
         dealObj.doQuery('${tableId}');
     }
+    //添加
+    function doAdd() {
+        var url="/business/view/toAddPage";
+        var widthX="90%";
+        var widthY="90%";
+        title="添加数据信息";
+        dealObj.doOpenLayer(url,widthX,widthY,title);
+    }
 </script>
 </body>
 </html>
