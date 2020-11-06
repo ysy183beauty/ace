@@ -1,4 +1,5 @@
 package com.ace.sysytem.controller;
+import com.ace.common.controller.CommonController;
 import com.ace.common.service.CommonService;
 import com.ace.page.PageParam;
 import com.ace.page.Pagination;
@@ -21,9 +22,11 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value ="/sys/query")
-public class QueryController {
+public class QueryController extends CommonController {
     @Autowired
     private CommonService commonService;
+    @Autowired
+    private  Map<String,Object> map;
     //查询所有sql语句信息
     @ResponseBody
     @RequestMapping(value ="/selectAllSql",method = RequestMethod.POST)
@@ -64,16 +67,6 @@ public class QueryController {
     @ResponseBody
     @RequestMapping(value ="/selectAllBaseInfo",method = RequestMethod.POST)
     public Map<String, Object> selectAllBaseInfo(Integer offset, Integer limit,BaseInfoSys baseInfoSys){
-        Map<String,Object> map= new HashMap<>();
-        Integer pageIndex=0;
-        if(offset==0){
-            pageIndex=1;
-        }else{
-            pageIndex=(offset/limit)+1;
-        }
-        PageParam pageParam=new PageParam();
-        pageParam.setPage(pageIndex);
-        pageParam.setLimit(limit);
         StringBuilder sb=new StringBuilder("SELECT * FROM T_BASE_INFO_SYS");
         List<Object> params=new ArrayList<>();
         if(baseInfoSys.getTablename().length()>0){
@@ -84,12 +77,12 @@ public class QueryController {
             sb.append(" and FIELDNAME like ?");
             params.add("%"+baseInfoSys.getFieldname()+"%");
         }
-        Pagination p = commonService.selectListByPage(sb.toString(), pageParam, params, "oracle");
-        List list=p.getResultList();
-        String json=JSON.toJSONString(list);
-        List<BaseInfoSys> queryData= JSONObject.parseArray(json,BaseInfoSys.class);
-        map.put("rows",queryData);
-        map.put("total",p.getTotalRows());
+        try {
+            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map=new HashMap<>();
+        }
         return map;
     }
 }
