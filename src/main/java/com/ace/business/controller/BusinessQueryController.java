@@ -1,5 +1,6 @@
 package com.ace.business.controller;
 
+import com.ace.common.controller.CommonController;
 import com.ace.common.entity.SelectEntity;
 import com.ace.business.entity.TInfo;
 import com.ace.business.entity.TOrg;
@@ -7,6 +8,7 @@ import com.ace.common.service.CommonService;
 import com.ace.page.PageParam;
 import com.ace.page.Pagination;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,54 +19,35 @@ import java.util.*;
 
 @Controller
 @RequestMapping(value ="/business/query")
-public class BusinessQueryController {
+public class BusinessQueryController extends CommonController {
     @Autowired
     private CommonService commonService;
+    private Map<String,Object> map;
     @ResponseBody
     @RequestMapping(value ="/selectAllInfos",method = RequestMethod.POST)
-    public Map<String, Object> selectAllInfos(Integer offset, Integer limit,TInfo info){
-        Map<String,Object> map= new HashMap<>();
-        Integer pageIndex=0;
-        if(offset==0){
-            pageIndex=1;
-        }else{
-            pageIndex=(offset/limit)+1;
-        }
-        PageParam pageParam=new PageParam();
-        pageParam.setPage(pageIndex);
-        pageParam.setLimit(limit);
+    public Map<String, Object> selectAllInfos(Integer offset, Integer limit){
         StringBuilder sb=new StringBuilder("SELECT * FROM T_INFO");
         List<Object> params=new ArrayList<>();
-        Pagination p = commonService.selectListByPage(sb.toString(), pageParam, params, "oracle");
-        List resultList = p.getResultList();
-        String json=JSON.toJSONString(resultList);
-        List<TInfo> list=JSON.parseArray(json,TInfo.class);
-        map.put("rows",list);
-        map.put("total",p.getTotalRows());
+        try {
+            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map=new HashMap<>();
+        }
         return map;
     }
 
     @ResponseBody
     @RequestMapping(value ="/selectOrgs",method = RequestMethod.POST)
-    public Map<String, Object> selectOrgs(Integer offset, Integer limit, TOrg org){
-        Map<String,Object> map= new HashMap<>();
-        Integer pageIndex=0;
-        if(offset==0){
-            pageIndex=1;
-        }else{
-            pageIndex=(offset/limit)+1;
-        }
-        PageParam pageParam=new PageParam();
-        pageParam.setPage(pageIndex);
-        pageParam.setLimit(limit);
+    public Map<String, Object> selectOrgs(Integer offset, Integer limit){
         StringBuilder sb=new StringBuilder("SELECT * FROM T_ORG");
         List<Object> params=new ArrayList<>();
-        Pagination p = commonService.selectListByPage(sb.toString(), pageParam, params, "oracle");
-        List resultList = p.getResultList();
-        String json=JSON.toJSONString(resultList);
-        List<TOrg> list=JSON.parseArray(json,TOrg.class);
-        map.put("rows",list);
-        map.put("total",p.getTotalRows());
+        try {
+            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map=new HashMap<>();
+        }
         return map;
     }
 
