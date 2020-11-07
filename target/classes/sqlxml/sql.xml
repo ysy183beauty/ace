@@ -13,4 +13,7 @@
     <li id="sql10" value="select * from T_BASE_INFO_SYS t WHERE t.ID=?" description="主键查询状态信息"></li>
     <li id="sql11" value="SELECT g.ORG_CODE as labValue,g.ORG_PROVICE as labText FROM T_ORG g GROUP BY g.ORG_CODE,g.ORG_PROVICE" description="查询所有省份信息"></li>
     <li id="sql12" value="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.FORMDISPLAY=?" description="查询info表单信息"></li>
+    <li id="sql13" value="SELECT * FROM T_STUDENT" description="查询学生信息"></li>
+    <li id="sql14" value="SELECT t.ID as labValue,t.CLASSNAME as labText FROM T_CLASS t" description="查询班级信息"></li>
+    <li id="sql15" value="SELECT t.ID as labValue,t.GRADENAME as labText FROM T_GRADE t" description="查询年级信息"></li>
 </sqls>

@@ -1,4 +1,4 @@
-<#macro form formList buttonOper>
+<#macro form formListMult formListOther buttonOper>
 <#include "../frame/urlRoot.ftl"/>
 <#include "formBody.ftl"/>
 <!-- 引入bootstrap样式 -->
@@ -8,7 +8,7 @@
 <script src="${ctx}/static/assets/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/assets/layer/layer.js"></script>
 <script src="${ctx}/static/assets/js/common/common.js"></script>
-<@formBody formList buttonOper/>
+<@formBody formListMult formListOther buttonOper/>
 <script type="text/javascript">
     function doCancel() {
         dealObj.doCloseLayer();

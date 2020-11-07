@@ -10,7 +10,7 @@
 <script src="${ctx}/static/assets/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/assets/layer/layer.js"></script>
 <script src="${ctx}/static/assets/js/common/common.js"></script>
-<div class="form-group" style="margin-left: -3px;margin-top: 40px;">
+<div class="form-group">
     <label class="col-sm-2 control-label"></label>
     <div class="col-sm-8">
         <#if buttonOper?? && (buttonOper?size > 0) >

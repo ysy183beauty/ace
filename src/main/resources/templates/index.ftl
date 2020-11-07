@@ -42,6 +42,11 @@
                         text: '组织列表',
                         icon: 'glyphicon glyphicon-tasks',
                         url: '/business/view/toOrgList'
+                    },{
+                        id: '223',
+                        text: '学生列表',
+                        icon: 'glyphicon glyphicon-tasks',
+                        url: '/business/view/selectStudents'
                     }]
                 }]
             });

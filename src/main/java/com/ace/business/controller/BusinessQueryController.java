@@ -45,6 +45,20 @@ public class BusinessQueryController extends CommonController {
         return map;
     }
 
+    @ResponseBody
+    @RequestMapping(value ="/selectStudents",method = RequestMethod.POST)
+    public Map<String, Object> selectStudents(Integer offset, Integer limit){
+        StringBuilder sb=new StringBuilder("SELECT * FROM T_STUDENT");
+        List<Object> params=new ArrayList<>();
+        try {
+            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map=new HashMap<>();
+        }
+        return map;
+    }
+
     /**
      * 查询所有省份数据信息
      */
@@ -52,6 +66,29 @@ public class BusinessQueryController extends CommonController {
     @RequestMapping(value ="/selectAllProvice",method = RequestMethod.POST)
     public List<SelectEntity> selectAllProvice(){
         String sql=commonService.selectSql("sql11");
+        List<Object> params=new ArrayList<>();
+        List<SelectEntity> list=commonService.selectList(sql,params.toArray());
+        return list;
+    }
+
+    /**
+     * 查询班级信息
+     */
+    @ResponseBody
+    @RequestMapping(value ="/selectAllClass",method = RequestMethod.POST)
+    public List<SelectEntity> selectAllClass(){
+        String sql=commonService.selectSql("sql14");
+        List<Object> params=new ArrayList<>();
+        List<SelectEntity> list=commonService.selectList(sql,params.toArray());
+        return list;
+    }
+    /**
+     * 查询年级信息
+     */
+    @ResponseBody
+    @RequestMapping(value ="/selectAllGrade",method = RequestMethod.POST)
+    public List<SelectEntity> selectAllGrade(){
+        String sql=commonService.selectSql("sql15");
         List<Object> params=new ArrayList<>();
         List<SelectEntity> list=commonService.selectList(sql,params.toArray());
         return list;
