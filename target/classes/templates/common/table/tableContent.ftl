@@ -52,8 +52,8 @@
              align:"center",
              valign:"middle",
              sortable:"true",
-             <#if item.statusmap??>
-                <#assign formatter=item.statusmap>
+             <#if item.listformatter??>
+                <#assign formatter=item.listformatter>
                 ${formatter}
              </#if>
          };
