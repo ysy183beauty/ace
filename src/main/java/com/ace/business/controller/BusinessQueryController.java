@@ -48,7 +48,9 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectStudents",method = RequestMethod.POST)
     public Map<String, Object> selectStudents(Integer offset, Integer limit){
-        StringBuilder sb=new StringBuilder("SELECT * FROM T_STUDENT");
+        StringBuilder sb=new StringBuilder("SELECT t.ID,t.NAME,g.GRADENAME,c.CLASSNAME,t.SEX,t.AGE,t.STARTDATE,t.ENDDATE,");
+        sb.append("t.INTRODUCE,t.ADDRESS ");
+        sb.append("FROM T_STUDENT t LEFT JOIN T_CLASS c on t.CID=c.ID LEFT JOIN T_GRADE g on t.GID=g.id");
         List<Object> params=new ArrayList<>();
         try {
             map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
