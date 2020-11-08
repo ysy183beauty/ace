@@ -58,7 +58,7 @@
                           });
                       }
                   </script>
-              <#elseif item.fieldtype='NUMBER'>
+              <#elseif item.fieldtype=='NUMBER'>
                    <div class="form-group">
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
@@ -66,7 +66,7 @@
                       <input type="text" class="form-control" maxlength="${item.fieldlength}" name="${item.fieldname}" id="${item.fieldname}">
                   </div>
               </div>
-              <#elseif item.fieldtype='BLOB'||item.fieldtype='CLOB'>
+              <#elseif item.fieldtype=='BLOB'||item.fieldtype=='CLOB'>
                    <div class="form-group">
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
@@ -74,7 +74,7 @@
                       <textarea class="form-control" name="${item.fieldname}" id="${item.fieldname}" maxlength="${item.fieldlength}"></textarea>
                   </div>
               </div>
-              <#elseif item.fieldtype='VARCHAR2'>
+              <#elseif item.fieldtype=='VARCHAR2'>
                    <div class="form-group">
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
@@ -83,7 +83,7 @@
                   </div>
               </div>
                <#--时间 -->
-              <#elseif item.fieldtype='DATE'>
+              <#elseif item.fieldtype=='DATE'>
               <#else>
                    <div class="form-group">
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>

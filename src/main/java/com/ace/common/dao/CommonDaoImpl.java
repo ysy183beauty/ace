@@ -3,6 +3,7 @@ package com.ace.common.dao;
 import com.ace.page.PageParam;
 import com.ace.page.Pagination;
 import com.ace.sysytem.entity.BaseInfoSys;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -100,11 +101,25 @@ public class CommonDaoImpl implements CommonDao {
             sb.setLength(0);
             sb.append("SELECT  * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.QUERYDISPLAY=?");
             List queryList=this.selectAllRecords(sb.toString(),paramsList.toArray());
-            map.put("list",list);
-            map.put("queryList",queryList);
+            map.put("list",changeList(list));
+            map.put("queryList",changeList(queryList));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public List changeList(List<Map<String,Object>> list){
+        List<JSONObject> rows=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            JSONObject obj=new JSONObject();
+            Map<String,Object> m=list.get(i);
+            for(String key:m.keySet()){
+                //替换所有的下划线和转换为小写
+                obj.put(key.replaceAll("_","").toLowerCase(),m.get(key));
+            }
+            rows.add(obj);
+        }
+        return rows;
     }
 }
