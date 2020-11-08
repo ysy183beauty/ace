@@ -62,6 +62,25 @@ public class CommonController {
     }
 
     /**
+     * 转换list<Map<String,Object>>
+     * @param list
+     * @return
+     */
+    public List changeList(List<Map<String,Object>> list){
+        List<JSONObject> rows=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            JSONObject obj=new JSONObject();
+            Map<String,Object> m=list.get(i);
+            for(String key:m.keySet()){
+                //替换所有的下划线和转换为小写
+                obj.put(key.replaceAll("_","").toLowerCase(),m.get(key));
+            }
+            rows.add(obj);
+        }
+        return rows;
+    }
+
+    /**
      * 通过表名查询列表和查询条件信息
       * @param tableName 表名
      * @return

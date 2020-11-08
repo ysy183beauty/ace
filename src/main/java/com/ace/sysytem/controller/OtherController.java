@@ -53,10 +53,10 @@ public class OtherController {
                 //清空
                 sql.setLength(0);
                 sql.append("INSERT INTO T_BASE_INFO_SYS(ID,FIELDNAME,FIELDTYPE,FIELDLENGTH,FIELDLABEL," +
-                        "LISTDISPLAY,FORMDISPLAY,QUERYDISPLAY,TABLENAME,QUERYFORMATTER,ISNULL,ORDER)");
+                        "LISTDISPLAY,FORMDISPLAY,QUERYDISPLAY,TABLENAME,QUERYFORMATTER,ISNULL,ORDERNUM)");
                 sql.append(" VALUES(ID_SEQ.nextval,:fieldname,:fieldtype,:fieldlength," +
                         ":fieldlabel,:listdisplay,:formdisplay,:querydisplay," +
-                        ":tablename,:queryformatter,:isnull,:order)");
+                        ":tablename,:queryformatter,:isnull,:ordernum)");
                 commonService.batchUpdate(result,sql.toString());
                 flag = true;
             }

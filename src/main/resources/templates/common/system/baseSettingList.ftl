@@ -242,7 +242,7 @@
                     }
                 },
                 {
-                    field:'order',
+                    field:'ordernum',
                     title:'排序码',
                     editable:{
                         type: "text",
@@ -293,14 +293,9 @@
             layer.alert("请填写表名！", {skin: 'layui-layer-molv',icon: 0});
             return;
         }else{
-            showTip("数据正在加载");
-            var url="/sys/query/selectBaseInfoSysList";
-            var params={
-                "tableName":tableName
-            };
-            dealObj.doAjax(url,params,function (data) {
-                loadTableData(data);
-            },false);
+            var url="/sys/query/selectBaseInfoSysByTableName";
+            var sql=$("#sql").val();
+            loadTableData(url,sql,tableName);
         }
     }
 </script>

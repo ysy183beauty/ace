@@ -49,14 +49,22 @@ public class QueryController extends CommonController {
      * 通过表名查询是否存在
      */
     @ResponseBody
-    @RequestMapping(value ="/selectBaseInfoSysList",method = RequestMethod.POST)
-    public List selectBaseInfoSysList(HttpServletRequest request){
-        String sql="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME= ?";
+    @RequestMapping(value ="/selectBaseInfoSysByTableName",method = RequestMethod.POST)
+    public Map<String,Object> selectBaseInfoSysList(HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        String sql="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME= ? order by ordernum asc";
         String tableName=request.getParameter("tableName");
         List<Object> params=new ArrayList<>();
         params.add(tableName);
-        List<BaseInfoSys> data=commonService.selectAllRecords(sql,params.toArray());
-        return data;
+        try {
+            List<Map<String,Object>> data=commonService.selectAllRecords(sql,params.toArray());
+            List rows=super.changeList(data);
+            map.put("rows",rows);
+            map.put("total",data.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 
     @ResponseBody

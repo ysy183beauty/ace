@@ -14,7 +14,7 @@ public class BaseInfoSys {
     private String url;//存放下拉框服务器地址
     private String queryformatter;//查询和表单使用的下拉框固定值
     private Integer isnull;//是否为空
-    private Integer order;//排序码
+    private Integer ordernum;//排序码
     public BaseInfoSys(){}
 
     public Integer getId() {
@@ -121,11 +121,11 @@ public class BaseInfoSys {
         this.isnull = isnull;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrdernum() {
+        return ordernum;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrdernum(Integer ordernum) {
+        this.ordernum = ordernum;
     }
 }
