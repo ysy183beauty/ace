@@ -57,9 +57,6 @@
     <table id="table-edit-id"></table>
 </div>
 <script type="text/javascript">
-    $(function () {
-
-    });
     //点击查询sql语句按钮
     function doTestSql() {
        //判断是否sql语句是否为空
