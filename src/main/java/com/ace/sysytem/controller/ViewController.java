@@ -1,8 +1,10 @@
 package com.ace.sysytem.controller;
 
+import com.ace.common.controller.CommonController;
 import com.ace.common.service.CommonService;
 import com.ace.sysytem.entity.BaseInfoSys;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value ="/sys/view")
-public class ViewController {
+public class ViewController extends CommonController {
     @Autowired
     private CommonService commonService;
     //跳转到配置列表信息
@@ -42,11 +45,12 @@ public class ViewController {
         String title=request.getParameter("title");
         List<Object> params=new ArrayList<>();
         params.add(id);
-        BaseInfoSys baseInfoSys=(BaseInfoSys)commonService.selectOne(sql, params.toArray(), BaseInfoSys.class);
+        List<Map<String,Object>> list= commonService.selectAllRecords(sql, params.toArray());
+        List<BaseInfoSys> data=JSONObject.parseArray(JSON.toJSONString(list),BaseInfoSys.class);
         if("1".equals(type)){
-            content=baseInfoSys.getListformatter();
+            content=data.get(0).getListformatter();
         }else{
-            content=baseInfoSys.getUrl();
+            content=data.get(0).getUrl();
         }
         ModelAndView mv=new ModelAndView();
         mv.setViewName("/common/system/editBaseSys");
