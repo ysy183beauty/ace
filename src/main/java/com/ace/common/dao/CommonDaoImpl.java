@@ -77,7 +77,7 @@ public class CommonDaoImpl implements CommonDao {
                 baseInfoSys.setListdisplay(1);//是否显示在列表上
                 baseInfoSys.setFormdisplay(1);//是否显示在form表单上
                 baseInfoSys.setQuerydisplay(2);//是否作为查询条件
-                baseInfoSys.setOrdernum(1);//排序码
+                baseInfoSys.setOrdernum(i);//排序码
                 columns.add(baseInfoSys);
             }
         } catch (SQLException e) {
