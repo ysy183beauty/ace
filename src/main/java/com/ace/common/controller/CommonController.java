@@ -106,7 +106,8 @@ public class CommonController {
         params.add(tableName);
         params.add("1");
         String sql="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.FORMDISPLAY=?";
-        List<BaseInfoSys> formList=commonService.selectAllRecords(sql,params.toArray());
+        List<Map<String,Object>> resultList=commonService.selectAllRecords(sql,params.toArray());
+        List<BaseInfoSys> formList=JSONObject.parseArray(JSON.toJSONString(resultList),BaseInfoSys.class);
         //多文本域与其它的分开
         List<BaseInfoSys> formListMult=new ArrayList<>();
         List<BaseInfoSys> formListOther=new ArrayList<>();
