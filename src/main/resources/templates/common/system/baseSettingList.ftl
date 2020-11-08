@@ -99,11 +99,6 @@
                     }
                 },
                 {
-                    field: 'isnull',
-                    title: '是否为空',
-                    visible: false
-                },
-                {
                     field: 'id',
                     title: '主键',
                     visible: false
@@ -161,6 +156,24 @@
                         validate: function (value) { //字段验证
                             if (!$.trim(value)) {
                                 return '中文名称不能为空';
+                            }
+                        }
+                    }
+                },{
+                    field: 'isnull',
+                    title: '是否为空',
+                    editable:{
+                        type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等#}
+                        title: "是否为空",              //编辑框的标题#}
+                        type: "select",              //编辑框的类型。支持text|textarea|select|date|checklist等
+                        source: [{value:0, text: "否"}, {value: 1, text: "是"}],
+                        title: "列表是否显示",           //编辑框的标题
+                        disabled: false,             //是否禁用编辑
+                        emptytext: "空文本",          //空值的默认文本
+                        mode: "inline",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+                        validate: function (value) { //字段验证
+                            if (!$.trim(value)) {
+                                return '请选中是否为空';
                             }
                         }
                     }

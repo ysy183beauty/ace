@@ -72,7 +72,7 @@ public class CommonDaoImpl implements CommonDao {
                 BaseInfoSys baseInfoSys=new BaseInfoSys();
                 baseInfoSys.setFieldname(metadata.getColumnName(i));//字段名称
                 baseInfoSys.setFieldtype(metadata.getColumnTypeName(i));//字段类型(数字、字符串、时间等)
-                baseInfoSys.setIsnull(metadata.isNullable(i));//是否为空
+                baseInfoSys.setIsnull(0);//默认不能为空
                 baseInfoSys.setFieldlength(metadata.getPrecision(i)==0?metadata.getColumnDisplaySize(i):metadata.getPrecision(i));//字段允许的长度
                 baseInfoSys.setListdisplay(1);//是否显示在列表上
                 baseInfoSys.setFormdisplay(1);//是否显示在form表单上
