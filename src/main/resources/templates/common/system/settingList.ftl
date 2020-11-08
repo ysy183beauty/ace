@@ -139,6 +139,27 @@
                     }
                 }
             },{
+                field:"isnull",
+                title:"是否空",
+                align:"center",
+                valign:"middle",
+                sortable:"true",
+                formatter:function (value, row, index) {
+                    if(value==0){
+                        return '<span class="label label-success radius">否</span>';
+                    }else{
+                        return '<span class="label label-waring radius">是</span>';
+                    }
+                }
+            },
+            {
+                field:"ordernum",
+                title:"排序码",
+                align:"center",
+                valign:"middle",
+                sortable:"true"
+            },
+            {
                 field:"statusmap",
                 title:"状态信息(list)",
                 align:"center",
@@ -160,7 +181,7 @@
             }
         ]
         var setting={
-            url : '/sys/query/selectAllBaseInfo', // 请求后台的URL（*）
+            url : '/sys/query/selectBaseList', // 请求后台的URL（*）
             method : 'post', // 请求方式（*）post/get
             contentType: "application/x-www-form-urlencoded",//post请求的话就加上这个句话
             toolbar : '#toolbar', // 工具按钮用哪个容器

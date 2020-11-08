@@ -25,7 +25,7 @@
                         id: '112',
                         text: '配置信息列表',
                         icon: 'glyphicon glyphicon-th-list',
-                        url: '/sys/view/toSelectSetting'
+                        url: '/sys/view/toSettingListPage'
                     }]
                 }, {
                     id: '2',

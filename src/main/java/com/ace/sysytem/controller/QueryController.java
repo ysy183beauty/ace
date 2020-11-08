@@ -68,20 +68,26 @@ public class QueryController extends CommonController {
     }
 
     @ResponseBody
-    @RequestMapping(value ="/selectAllBaseInfo",method = RequestMethod.POST)
-    public Map<String, Object> selectAllBaseInfo(Integer offset, Integer limit,BaseInfoSys baseInfoSys){
-        StringBuilder sb=new StringBuilder("SELECT * FROM T_BASE_INFO_SYS");
+    @RequestMapping(value ="/selectBaseList",method = RequestMethod.POST)
+    public Map<String, Object> selectBaseList(Integer offset, Integer limit,BaseInfoSys baseInfoSys){
+        String sql="SELECT * FROM T_BASE_INFO_SYS";
+        StringBuilder sb=new StringBuilder();
         List<Object> params=new ArrayList<>();
         if(baseInfoSys.getTablename().length()>0){
             sb.append(" where TABLENAME like ?");
             params.add("%"+baseInfoSys.getTablename()+"%");
         }
         if(baseInfoSys.getFieldname().length()>0){
-            sb.append(" and FIELDNAME like ?");
+            if(sb.length()>0){
+                sb.append(" and FIELDNAME like ?");
+            }else{
+                sb.append(" where FIELDNAME like ?");
+            }
             params.add("%"+baseInfoSys.getFieldname()+"%");
         }
         try {
-            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+            sql=sql+sb.toString();
+            map=super.queryCommonInfo(offset,limit,sql,params,"oracle");
         } catch (Exception e) {
             e.printStackTrace();
             map=new HashMap<>();

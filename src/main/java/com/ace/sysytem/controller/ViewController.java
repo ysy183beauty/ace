@@ -3,7 +3,6 @@ package com.ace.sysytem.controller;
 import com.ace.common.service.CommonService;
 import com.ace.sysytem.entity.BaseInfoSys;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +25,10 @@ public class ViewController {
         return mv;
     }
     //查询配置表信息
-    @RequestMapping(value = "/toSelectSetting")
-    public ModelAndView toSelectSetting(){
+    @RequestMapping(value = "/toSettingListPage")
+    public ModelAndView toSettingListPage(){
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("/common/system/selectSettingList");
+        mv.setViewName("/common/system/settingList");
         return mv;
     }
     //修改状态信息
