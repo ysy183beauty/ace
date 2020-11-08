@@ -30,16 +30,19 @@ public class QueryController extends CommonController {
     //查询sql语句要查询的列名信息
     @ResponseBody
     @RequestMapping(value ="/selectBaseInfoSysBySql",method = RequestMethod.POST)
-    public List selectColumns(HttpServletRequest request){
+    public Map<String,Object> selectColumns(HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
         //获取传递过来的参数
         String sql=request.getParameter("sql");
         List<BaseInfoSys> list=new ArrayList<>();
         try {
             list= commonService.selectBaseInfoSysBySql(sql);
+            map.put("rows",list);
+            map.put("total",list.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+        return map;
     }
 
     /**

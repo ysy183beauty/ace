@@ -76,11 +76,13 @@
     function loadTableData(url,sql,tableName) {
         $("#table-edit-id").bootstrapTable({
             url:url,
-            method: 'post',                      //请求方式（*）
+            method: 'post',
+            singleSelect:false,//设置选中多行//请求方式（*）
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination:false,
             sidePagination: "server",
             pageNumber: 1,
+            uniqueId : "id", // 每一行的唯一标识，一般为主键列
             contentType: "application/x-www-form-urlencoded",
             datatype: 'json',
             locale: "zh-CN", //中文支持
@@ -89,12 +91,6 @@
                 data['sql']=sql;
                 data['tableName']=tableName;
                 return data;
-            },
-            formatNoMatches: function(){
-                return "没有相关的匹配结果";
-            },
-            formatLoadingMessage: function(){
-                return "请稍等，正在加载中....";
             },
             columns: [
                 {

@@ -75,7 +75,7 @@ public class CommonDaoImpl implements CommonDao {
                 baseInfoSys.setFieldlength(metadata.getPrecision(i)==0?metadata.getColumnDisplaySize(i):metadata.getPrecision(i));//字段允许的长度
                 baseInfoSys.setListdisplay(1);//是否显示在列表上
                 baseInfoSys.setFormdisplay(1);//是否显示在form表单上
-                baseInfoSys.setQuerydisplay(0);//是否作为查询条件
+                baseInfoSys.setQuerydisplay(1);//是否作为查询条件
                 baseInfoSys.setOrder(1);//排序码
                 columns.add(baseInfoSys);
             }
