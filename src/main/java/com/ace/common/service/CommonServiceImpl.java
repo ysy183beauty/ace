@@ -16,16 +16,19 @@ import java.util.Map;
 public class CommonServiceImpl implements CommonService {
     @Autowired
     private CommonDao commonDao;
-    @Autowired
-    private SqlXmlService sqlXmlService;
     @Override
     public Integer totalRecords(String sql, Object[] params) {
         return commonDao.totalRecords(sql,params);
     }
 
     @Override
-    public List selectList(String sql, Object[] params) {
-        return commonDao.selectList(sql,params);
+    public List selectAllRecords(String sql, Object[] params) {
+        return commonDao.selectAllRecords(sql,params);
+    }
+
+    @Override
+    public Object selectOne(String sql, Object[] params, Class t) {
+        return commonDao.selectOne(sql,params,t);
     }
 
     @Override
@@ -39,8 +42,8 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public List<BaseInfoSys> selectColumns(String sql) {
-        return commonDao.selectColumns(sql);
+    public List<BaseInfoSys> selectBaseInfoSysBySql(String sql) {
+        return commonDao.selectBaseInfoSysBySql(sql);
     }
 
     @Override
@@ -49,23 +52,8 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public String selectSql(String sqlId) {
-        SqlEntity sqlEntity=sqlXmlService.getSqlEntity(sqlId);//获取sql对象
-        if(sqlEntity==null){
-            sqlEntity=new SqlEntity();
-        }
-        return sqlEntity.getValue();
+    public Map<String, List> selectListAndQueryInfo(String tableName) {
+        return commonDao.selectListAndQueryInfo(tableName);
     }
 
-    @Override
-    public List<SqlEntity> selectSqlAll() {
-        return sqlXmlService.getSqlAll();
-    }
-
-    @Override
-    public Map<String,List> selectTableDisplay(String tableName, Integer listDisplay,
-                                                  Integer queryDisplay,String sqlListId, String sqlQueryId) {
-        return commonDao.selectTableDisplay(tableName,listDisplay,queryDisplay,
-                sqlXmlService.getSqlEntity(sqlListId).getValue(),sqlXmlService.getSqlEntity(sqlQueryId).getValue());
-    }
 }

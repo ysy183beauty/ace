@@ -65,9 +65,9 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectAllProvice",method = RequestMethod.POST)
     public List<SelectEntity> selectAllProvice(){
-        String sql=commonService.selectSql("sql11");
+        String sql="SELECT g.ORG_CODE as labValue,g.ORG_PROVICE as labText FROM T_ORG g GROUP BY g.ORG_CODE,g.ORG_PROVICE";
         List<Object> params=new ArrayList<>();
-        List<SelectEntity> list=commonService.selectList(sql,params.toArray());
+        List<SelectEntity> list=commonService.selectAllRecords(sql,params.toArray());
         return list;
     }
 
@@ -77,9 +77,9 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectAllClass",method = RequestMethod.POST)
     public List<SelectEntity> selectAllClass(){
-        String sql=commonService.selectSql("sql14");
+        String sql="SELECT t.ID as labValue,t.CLASSNAME as labText FROM T_CLASS t";
         List<Object> params=new ArrayList<>();
-        List<SelectEntity> list=commonService.selectList(sql,params.toArray());
+        List<SelectEntity> list=commonService.selectAllRecords(sql,params.toArray());
         return list;
     }
     /**
@@ -88,9 +88,9 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectAllGrade",method = RequestMethod.POST)
     public List<SelectEntity> selectAllGrade(){
-        String sql=commonService.selectSql("sql15");
+        String sql="SELECT t.ID as labValue,t.GRADENAME as labText FROM T_GRADE t";
         List<Object> params=new ArrayList<>();
-        List<SelectEntity> list=commonService.selectList(sql,params.toArray());
+        List<SelectEntity> list=commonService.selectAllRecords(sql,params.toArray());
         return list;
     }
 

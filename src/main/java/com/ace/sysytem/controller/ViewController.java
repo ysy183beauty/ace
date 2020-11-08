@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value ="/sys/view")
@@ -20,10 +19,10 @@ public class ViewController {
     @Autowired
     private CommonService commonService;
     //跳转到配置列表信息
-    @RequestMapping(value = "/toSettingList")
+    @RequestMapping(value = "/toBaseSettingPage")
     public ModelAndView toSettingList(){
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("/common/system/settingList");
+        mv.setViewName("/common/system/baseSettingList");
         return mv;
     }
     //查询配置表信息
@@ -36,21 +35,19 @@ public class ViewController {
     //修改状态信息
     @RequestMapping(value = "/updateStatusMap")
     public ModelAndView updateStatusMap(HttpServletRequest request){
+        //通过主键查询数据
+        String sql="select * from T_BASE_INFO_SYS t WHERE t.ID=?";
         String content="";
         String id=request.getParameter("id");
         String type=request.getParameter("type");
         String title=request.getParameter("title");
         List<Object> params=new ArrayList<>();
         params.add(id);
-        List list= commonService.selectList(commonService.selectSql("sql10"), params.toArray());
-        String json=JSON.toJSONString(list);
-        List<BaseInfoSys> data = JSONObject.parseArray(json, BaseInfoSys.class);
-        if(data.size()>0){
-            if("1".equals(type)){
-                content=data.get(0).getStatusmap();
-            }else{
-                content=data.get(0).getUrl();
-            }
+        BaseInfoSys baseInfoSys=(BaseInfoSys)commonService.selectOne(sql, params.toArray(), BaseInfoSys.class);
+        if("1".equals(type)){
+            content=baseInfoSys.getListformatter();
+        }else{
+            content=baseInfoSys.getUrl();
         }
         ModelAndView mv=new ModelAndView();
         mv.setViewName("/common/system/editStatusMap");

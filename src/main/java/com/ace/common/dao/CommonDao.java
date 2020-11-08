@@ -17,12 +17,21 @@ public interface CommonDao {
     Integer totalRecords(String sql, Object[] params);
 
     /**
-     * 查询集合
+     * 查询所有数据信息
      * @param sql sql语句
      * @param params 参数
      * @return
      */
-    List selectList(String sql,Object[] params);
+    List selectAllRecords(String sql, Object[] params);
+
+    /**
+     * 查询某个对象
+     * @param sql sql语句
+     * @param params 参数
+     * @param t 类
+     * @return
+     */
+    Object selectOne(String sql, Object[] params,Class t);
     /**
      * 分页查询
      * @param sql sql语句
@@ -51,15 +60,12 @@ public interface CommonDao {
     /**
      * 通过sql语句获取列名信息
      */
-    List<BaseInfoSys> selectColumns(String sql);
+    List<BaseInfoSys> selectBaseInfoSysBySql(String sql);
 
     /**
-     * 列表和查询条件显示的字段
-     * @param tableName 表名
-     * @param listDisplay 列表状态(1或0)
-     * @param queryDisplay 查询状态(1或0)
+     * 查询列表和查询条件的信息
+     * @param tableName 通过表名
      * @return
      */
-    Map<String,List> selectTableDisplay(String tableName, Integer listDisplay,
-                                          Integer queryDisplay,String sqlList,String sqlQuery);
+    Map<String,List> selectListAndQueryInfo(String tableName);
 }

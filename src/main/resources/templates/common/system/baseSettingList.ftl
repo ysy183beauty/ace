@@ -36,19 +36,17 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="sr-only" for="product_line">sql语句集合</label>
+                <label class="sr-only" for="product_line">sql语句</label>
                 <div class="input-group">
-                    <div class="input-group-addon">sql语句集合</div>
-                    <select class="form-control selectpicker bla bla bli" name="" id="sqlSelect" data-live-search="true">
-
-                    </select>
+                    <div class="input-group-addon">sql语句</div>
+                    <textarea class="form-control" rows="3" cols="70" id="sql" name="sql"></textarea>
                 </div>
             </div>
-            <button type="button" class="btn btn-default" onclick="doQuery();">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
-            </button>
             <button type="button" class="btn btn-default" onclick="doTestSql();">
                 <span class="glyphicon glyphicon-link" aria-hidden="true"></span>测试sql
+            </button>
+            <button type="button" class="btn btn-default" onclick="doQuery();">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
             </button>
             <button type="button" class="btn btn-default" onclick="doSave();">
                 <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
@@ -60,56 +58,38 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        loadSqlData();
+
     });
-    //加载sql语句集合
-    function loadSqlData() {
-        var url="/sys/query/selectAllSql";
-        var params={};
-        var isAsync=false;
-        dealObj.doAjax(url,params,function (data) {
-             var html='<option value="" selected>请选择</option>';
-             if(data.length>0){
-                 for(var i=0;i<data.length;i++){
-                     html+='<option value="'+data[i].id+'">'+data[i].description+'</option>';
-                 }
-                 $("#sqlSelect").html(html);//追加到下拉框中
-             }
-        },isAsync);
-        $('.selectpicker').selectpicker({
-            'selectedText': ''
-        });
-    }
     //点击查询sql语句按钮
     function doTestSql() {
-       var sqlSelect=$("#sqlSelect").val();
-       if(sqlSelect==''){
-           layer.alert("请选中sql语句集合！", {skin: 'layui-layer-molv',icon: 0});
+       //判断是否sql语句是否为空
+       var sql=$("#sql").val();
+       if(sql==''){
+           layer.alert("请填写sql语句集合！", {skin: 'layui-layer-molv',icon: 0});
            return;
-       }else{
-           showTip("数据正在加载");
-           var url="/sys/query/selectColumns";
-           var params={
-               "sqlId":sqlSelect
-           };
-           dealObj.doAjax(url,params,function (data) {
-               loadTableData(data);
-           });
        }
+       var url="/sys/query/selectBaseInfoSysBySql";
+       var tableName=$("#tableName").val();
+        loadTableData(url,sql,tableName);
     }
     //加载表格信息
-    function loadTableData(json) {
-        $('#table-edit-id').bootstrapTable('destroy');
-        showTip("数据正在加载");
+    function loadTableData(url,sql,tableName) {
         $("#table-edit-id").bootstrapTable({
-            data:json,
-            method: 'get',                      //请求方式（*）
+            url:url,
+            method: 'post',                      //请求方式（*）
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination:false,
             sidePagination: "server",
             pageNumber: 1,
             contentType: "application/x-www-form-urlencoded",
             datatype: 'json',
+            locale: "zh-CN", //中文支持
+            queryParams:function(){
+                var data = {};
+                data['sql']=sql;
+                data['tableName']=tableName;
+                return data;
+            },
             formatNoMatches: function(){
                 return "没有相关的匹配结果";
             },
@@ -124,6 +104,11 @@
                     formatter: function(value, row, index) {
                         return index + 1;
                     }
+                },
+                {
+                    field: 'isnull',
+                    title: '是否为空',
+                    visible: false
                 },
                 {
                     field: 'id',
@@ -144,7 +129,7 @@
                         source:[
                             {value:'NUMBER', text: "NUMBER"}, {value:'VARCHAR2', text: "VARCHAR2"},
                             {value:'BLOB', text: "BLOB"},{value:'DATE', text: "DATE"},
-                            {value:'DECIMAL', text: "DECIMAL"}
+                            {value:'CLOB', text: "CLOB"}
                          ],
                         title: "字段类型",           //编辑框的标题
                         disabled: false,             //是否禁用编辑
@@ -245,7 +230,7 @@
                     }
                 },
                 {
-                    field:'querystatusmap',
+                    field:'queryformatter',
                     title:'状态信息(query)',
                     editable:{
                         type: "text",
@@ -259,10 +244,26 @@
                             }
                         }*/
                     }
+                },
+                {
+                    field:'order',
+                    title:'排序码',
+                    editable:{
+                        type: "text",
+                        title: "状态信息",
+                        disabled: false,
+                        emptytext: "空文本",
+                        mode: "inline",
+                        validate: function (value) {//字段验证
+                            var reg=/(^[1-9]\d*$)/;
+                            if(!reg.test(value)){
+                                return '必须为数字';
+                            }
+                        }
+                    }
                 }
             ]
         });
-        closeTip();
     }
     //点击保存
     function doSave() {

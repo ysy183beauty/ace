@@ -4,16 +4,13 @@ import com.ace.page.PageParam;
 import com.ace.page.Pagination;
 import com.ace.sysytem.entity.BaseInfoSys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +28,13 @@ public class CommonDaoImpl implements CommonDao {
     }
 
     @Override
-    public List selectList(String sql, Object[] params) {
+    public List selectAllRecords(String sql, Object[] params) {
         return jdbcTemplate.queryForList(sql,params);
+    }
+
+    @Override
+    public Object selectOne(String sql, Object[] params,Class t) {
+        return jdbcTemplate.queryForObject(sql,params,t);
     }
 
     @Override
@@ -57,34 +59,52 @@ public class CommonDaoImpl implements CommonDao {
     }
 
     @Override
-    public List<BaseInfoSys> selectColumns(String sql) {
+    public List<BaseInfoSys> selectBaseInfoSysBySql(String sql) {
         List<BaseInfoSys> columns=new ArrayList<>();
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql.replaceAll("[?]","'0'"));
-        String[] columnNames = sqlRowSet.getMetaData().getColumnNames();
-        for(String s:columnNames){
-            BaseInfoSys baseInfoSys=new BaseInfoSys();
-            baseInfoSys.setFieldname(s);
-            columns.add(baseInfoSys);
+        try {
+            DataSource dataSource = jdbcTemplate.getDataSource();
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            ResultSetMetaData metadata = (ResultSetMetaData) result.getMetaData();
+            for(int i = 1; i <= metadata.getColumnCount();i++){
+                BaseInfoSys baseInfoSys=new BaseInfoSys();
+                baseInfoSys.setFieldname(metadata.getColumnName(i));//字段名称
+                baseInfoSys.setFieldtype(metadata.getColumnTypeName(i));//字段类型(数字、字符串、时间等)
+                baseInfoSys.setIsnull(metadata.isNullable(i));//是否为空
+                baseInfoSys.setFieldlength(metadata.getPrecision(i)==0?metadata.getColumnDisplaySize(i):metadata.getPrecision(i));//字段允许的长度
+                baseInfoSys.setListdisplay(1);//是否显示在列表上
+                baseInfoSys.setFormdisplay(1);//是否显示在form表单上
+                baseInfoSys.setQuerydisplay(0);//是否作为查询条件
+                baseInfoSys.setOrder(1);//排序码
+                columns.add(baseInfoSys);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return columns;
     }
 
     @Override
-    public Map<String, List> selectTableDisplay(String tableName,Integer listDisplay,
-                                                  Integer queryDisplay,String sqlList,String sqlQuery) {
+    public Map<String, List> selectListAndQueryInfo(String tableName) {
+        StringBuilder sb=new StringBuilder();
         Map<String, List> map=new HashMap<>();
-        //查询列表显示的字段
-        List<Object> paramsList=new ArrayList<>();
-        paramsList.add(tableName);
-        paramsList.add(listDisplay);
-        List list1=this.selectList(sqlList,paramsList.toArray());
-        //情况清空数据信息
-        paramsList.clear();
-        paramsList.add(tableName);
-        paramsList.add(queryDisplay);
-        List list2=this.selectList(sqlQuery,paramsList.toArray());
-        map.put("list",list1);
-        map.put("query",list2);
+        try {
+            //查询列表显示的字段
+            List<Object> paramsList=new ArrayList<>();
+            paramsList.add(tableName);
+            paramsList.add(1);
+            sb.append("SELECT  * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.LISTDISPLAY=?");
+            List list = this.selectAllRecords(sb.toString(), paramsList.toArray());
+            //清空数据信息
+            sb.setLength(0);
+            sb.append("SELECT  * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.QUERYDISPLAY=?");
+            List queryList=this.selectAllRecords(sb.toString(),paramsList.toArray());
+            map.put("list",list);
+            map.put("queryList",queryList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return map;
     }
 }

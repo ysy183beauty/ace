@@ -10,37 +10,49 @@ public class BaseInfoSys {
     private Integer formdisplay;//是否显示在form表单上
     private Integer querydisplay;//是否作为查询条件
     private String tablename;//表名
-    private String statusmap;//存放下拉框固定值
+    private String listformatter;//存放下拉框固定值
     private String url;//存放下拉框服务器地址
-    private String querystatusmap;//查询和表单使用的下拉框固定值
+    private String queryformatter;//查询和表单使用的下拉框固定值
+    private Integer isnull;//是否为空
+    private Integer order;//排序码
     public BaseInfoSys(){}
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getFieldname() {
         return fieldname;
     }
+
     public void setFieldname(String fieldname) {
         this.fieldname = fieldname;
     }
+
     public String getFieldtype() {
         return fieldtype;
     }
+
     public void setFieldtype(String fieldtype) {
         this.fieldtype = fieldtype;
     }
+
     public Integer getFieldlength() {
         return fieldlength;
     }
+
     public void setFieldlength(Integer fieldlength) {
         this.fieldlength = fieldlength;
     }
+
     public String getFieldlabel() {
         return fieldlabel;
     }
+
     public void setFieldlabel(String fieldlabel) {
         this.fieldlabel = fieldlabel;
     }
@@ -77,12 +89,12 @@ public class BaseInfoSys {
         this.tablename = tablename;
     }
 
-    public String getStatusmap() {
-        return statusmap;
+    public String getListformatter() {
+        return listformatter;
     }
 
-    public void setStatusmap(String statusmap) {
-        this.statusmap = statusmap;
+    public void setListformatter(String listformatter) {
+        this.listformatter = listformatter;
     }
 
     public String getUrl() {
@@ -93,11 +105,27 @@ public class BaseInfoSys {
         this.url = url;
     }
 
-    public String getQuerystatusmap() {
-        return querystatusmap;
+    public String getQueryformatter() {
+        return queryformatter;
     }
 
-    public void setQuerystatusmap(String querystatusmap) {
-        this.querystatusmap = querystatusmap;
+    public void setQueryformatter(String queryformatter) {
+        this.queryformatter = queryformatter;
+    }
+
+    public Integer getIsnull() {
+        return isnull;
+    }
+
+    public void setIsnull(Integer isnull) {
+        this.isnull = isnull;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }

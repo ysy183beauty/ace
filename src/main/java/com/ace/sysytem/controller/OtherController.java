@@ -33,12 +33,14 @@ public class OtherController {
         map=new HashMap<>();
         String data=request.getParameter("data");
         String tableName=request.getParameter("tableName");
+        StringBuilder sql=new StringBuilder();
         try {
             if(data!=null){
                 //1、首先删除数据信息
+                sql.append("DELETE FROM T_BASE_INFO_SYS WHERE TABLENAME=?");
                 List<Object> params=new ArrayList<>();
                 params.add(tableName);
-                commonService.update(commonService.selectSql("sql4"),params.toArray());
+                commonService.update(sql.toString(),params.toArray());
                 //字符串转换为list
                 JSONArray array=JSONArray.parseArray(data);
                 //转换为list
@@ -48,7 +50,13 @@ public class OtherController {
                     b.setTablename(tableName);
                     result.add(b);
                 }
-                commonService.batchUpdate(result, commonService.selectSql("sql2"));
+                //清空
+                sql.setLength(0);
+                sql.append("INSERT INTO T_BASE_INFO_SYS(ID,FIELDNAME,FIELDTYPE,FIELDLENGTH,FIELDLABEL," +
+                        "LISTDISPLAY,FORMDISPLAY,QUERYDISPLAY,TABLENAME,QUERYSTATUSMAP)");
+                sql.append(" VALUES(ID_SEQ.nextval,:fieldname,:fieldtype,:fieldlength," +
+                        ":fieldlabel,:listdisplay,:formdisplay,:querydisplay,:tablename,:querystatusmap)");
+                commonService.batchUpdate(result,sql.toString());
                 flag = true;
             }
         } catch (Exception e) {
@@ -61,7 +69,7 @@ public class OtherController {
     @RequestMapping(value ="/updateStatusMap",method = RequestMethod.POST)
     public Map<String,Object> updateStatusMap(HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
-        String sql;
+        StringBuilder sql=new StringBuilder("UPDATE T_BASE_INFO_SYS t");
         try {
             String id=request.getParameter("id");
             String type=request.getParameter("type");
@@ -70,11 +78,12 @@ public class OtherController {
             params.add(content);
             params.add(id);
             if("1".equals(type)){
-                sql=commonService.selectSql("sql8");
+                sql.append(" set t.STATUSMAP=?");
             }else{
-                sql=commonService.selectSql("sql9");
+                sql.append(" set t.URL=?");
             }
-            commonService.update(sql,params.toArray());
+            sql.append(" WHERE t.ID=?");
+            commonService.update(sql.toString(),params.toArray());
             map.put("status",true);
         } catch (Exception e) {
             e.printStackTrace();

@@ -18,9 +18,9 @@
                     url: '',
                     menus: [{
                         id: '11',
-                        text: '基本信息配置',
+                        text: '基本配置',
                         icon: 'glyphicon glyphicon-th-list',
-                        url: '/sys/view/toSettingList'
+                        url: '/sys/view/toBaseSettingPage'
                     },{
                         id: '112',
                         text: '配置信息列表',

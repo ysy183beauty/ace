@@ -1,10 +1,15 @@
 package com.ace.common.controller;
+import com.ace.business.entity.OperButton;
 import com.ace.common.service.CommonService;
 import com.ace.page.PageParam;
 import com.ace.page.Pagination;
+import com.ace.sysytem.entity.BaseInfoSys;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,4 +60,73 @@ public class CommonController {
         }
         return map;
     }
+
+    /**
+     * 通过表名查询列表和查询条件信息
+      * @param tableName 表名
+     * @return
+     */
+   public Map<String,List<BaseInfoSys>> selectListAndQueryInfo(String tableName){
+       Map<String,List<BaseInfoSys>> data=new HashMap<>();
+       Map<String, List> map=commonService.selectListAndQueryInfo(tableName);
+       List<BaseInfoSys> list=map.get("list");
+       List<BaseInfoSys> queryList=map.get("queryList");
+       data.put("list",list);
+       data.put("queryList",queryList);
+       return data;
+   }
+
+    /**
+     * 通过表名查询表单信息
+     * @param tableName 表名
+     * @return
+     */
+    public Map<String,List<BaseInfoSys>> selectFormInfo(String tableName){
+        Map<String,List<BaseInfoSys>> data=new HashMap<>();
+        List<Object> params=new ArrayList<>();
+        params.add(tableName);
+        params.add("1");
+        String sql="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME=? and f.FORMDISPLAY=?";
+        List<BaseInfoSys> formList=commonService.selectAllRecords(sql,params.toArray());
+        //多文本域与其它的分开
+        List<BaseInfoSys> formListMult=new ArrayList<>();
+        List<BaseInfoSys> formListOther=new ArrayList<>();
+        for(BaseInfoSys b:formList){
+            if("CLOB".equals(b.getFieldtype())||"BLOB".equals(b.getFieldtype())){
+                formListMult.add(b);
+            }else{
+                formListOther.add(b);
+            }
+        }
+        data.put("formListMult",formListMult);
+        data.put("formListOther",formListOther);
+        return data;
+    }
+
+    public ModelAndView selectView(String tableName){
+        ModelAndView mv=new ModelAndView();
+        Map<String,List<BaseInfoSys>> data=this.selectListAndQueryInfo(tableName);
+        mv.addObject("queryFields", JSON.toJSONString(data.get("queryList")));
+        mv.addObject("cols",JSON.toJSONString(data.get("list")));
+        return mv;
+    }
+
+    public ModelAndView ForView(List<OperButton> buttons,String tableName){
+        ModelAndView mv=new ModelAndView();
+        //默认按钮为保存和取消按钮
+        List<OperButton> operButtons=new ArrayList<>();
+        operButtons.add(new OperButton("保存","btn-success","doSave"));
+        operButtons.add(new OperButton("取消","btn-danger","doCancel"));
+        if(buttons!=null&&buttons.size()>0){
+            for(OperButton b:buttons){
+                operButtons.add(b);
+            }
+        }
+        Map<String,List<BaseInfoSys>> data=this.selectFormInfo(tableName);
+        mv.addObject("buttonOper",JSON.toJSONString(operButtons));
+        mv.addObject("formListMult",JSON.toJSONString(data.get("formListMult")));
+        mv.addObject("formListOther",JSON.toJSONString(data.get("formListOther")));
+        return mv;
+    }
+
 }

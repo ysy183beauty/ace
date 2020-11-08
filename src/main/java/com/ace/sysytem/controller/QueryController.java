@@ -27,23 +27,17 @@ public class QueryController extends CommonController {
     private CommonService commonService;
     @Autowired
     private  Map<String,Object> map;
-    //查询所有sql语句信息
-    @ResponseBody
-    @RequestMapping(value ="/selectAllSql",method = RequestMethod.POST)
-    public List<SqlEntity> selectAllSql(){
-        return commonService.selectSqlAll();
-    }
     //查询sql语句要查询的列名信息
     @ResponseBody
-    @RequestMapping(value ="/selectColumns",method = RequestMethod.POST)
+    @RequestMapping(value ="/selectBaseInfoSysBySql",method = RequestMethod.POST)
     public List selectColumns(HttpServletRequest request){
-        List<BaseInfoSys> list=null;
+        //获取传递过来的参数
+        String sql=request.getParameter("sql");
+        List<BaseInfoSys> list=new ArrayList<>();
         try {
-            String sqlId=request.getParameter("sqlId");
-            list= commonService.selectColumns(commonService.selectSql(sqlId));
+            list= commonService.selectBaseInfoSysBySql(sql);
         } catch (Exception e) {
             e.printStackTrace();
-            list=new ArrayList<>();
         }
         return list;
     }
@@ -54,13 +48,11 @@ public class QueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectBaseInfoSysList",method = RequestMethod.POST)
     public List selectBaseInfoSysList(HttpServletRequest request){
+        String sql="SELECT * FROM T_BASE_INFO_SYS f where f.TABLENAME= ?";
         String tableName=request.getParameter("tableName");
-        String sql=commonService.selectSql("sql3");
         List<Object> params=new ArrayList<>();
         params.add(tableName);
-        List list=commonService.selectList(sql,params.toArray());
-        String json= JSON.toJSONString(list);
-        List<BaseInfoSys> data= JSONObject.parseArray(json,BaseInfoSys.class);
+        List<BaseInfoSys> data=commonService.selectAllRecords(sql,params.toArray());
         return data;
     }
 
