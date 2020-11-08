@@ -236,7 +236,7 @@
         var widthX="60%";
         var widthY="60%";
         var title=$(obj).text();
-        var url="/sys/view/updateStatusMap?id="+id+"&type="+type+"&title="+title;
+        var url="/sys/view/updateBaseSys?id="+id+"&type="+type+"&title="+title;
         dealObj.doOpenLayer(url,widthX,widthY,title,function () {
             layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
             top.dealObj.info=undefined;

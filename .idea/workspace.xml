@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="69a9c333-ea0e-4027-b8c6-b000d4fe921f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/sysytem/controller/QueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/sysytem/controller/QueryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/sysytem/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/sysytem/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/system/selectSettingList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/system/settingList.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ace/sysytem/controller/QueryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ace/sysytem/controller/QueryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ace/sysytem/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ace/sysytem/controller/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/common/system/selectSettingList.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/system/editStatusMap.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/system/editBaseSys.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/system/settingList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/system/settingList.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
       <workItem from="1604657346895" duration="3592000" />
       <workItem from="1604710407656" duration="23390000" />
       <workItem from="1604764087516" duration="1026000" />
-      <workItem from="1604798495974" duration="18430000" />
+      <workItem from="1604798495974" duration="19025000" />
     </task>
     <task id="LOCAL-00001" summary="一次提交">
       <created>1604501364000</created>
@@ -220,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604820062193</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="第四次提交">
+      <created>1604821257238</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1604821257238</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,10 +251,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1604633120043" />
-    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604820059781">
+    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604821253161">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604820059781" />
+    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604821253161" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1604500878111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

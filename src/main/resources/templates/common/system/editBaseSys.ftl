@@ -30,7 +30,7 @@
                 layer.alert("${title}不能为空！", {skin: 'layui-layer-molv',icon: 1});
                 return;
             }else{
-                var url="/sys/deal/updateStatusMap";
+                var url="/sys/deal/updateBaseInfo";
                 var params={
                     id:"${id}",
                     type:"${type}",

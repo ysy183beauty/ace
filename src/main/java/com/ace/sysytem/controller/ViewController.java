@@ -32,8 +32,8 @@ public class ViewController {
         return mv;
     }
     //修改状态信息
-    @RequestMapping(value = "/updateStatusMap")
-    public ModelAndView updateStatusMap(HttpServletRequest request){
+    @RequestMapping(value = "/updateBaseSys")
+    public ModelAndView updateBaseSys(HttpServletRequest request){
         //通过主键查询数据
         String sql="select * from T_BASE_INFO_SYS t WHERE t.ID=?";
         String content="";
@@ -49,7 +49,7 @@ public class ViewController {
             content=baseInfoSys.getUrl();
         }
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("/common/system/editStatusMap");
+        mv.setViewName("/common/system/editBaseSys");
         mv.addObject("id",id);
         mv.addObject("type",type);
         mv.addObject("title",title);

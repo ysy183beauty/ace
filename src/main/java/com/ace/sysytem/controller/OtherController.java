@@ -67,8 +67,8 @@ public class OtherController {
         return map;
     }
     @ResponseBody
-    @RequestMapping(value ="/updateStatusMap",method = RequestMethod.POST)
-    public Map<String,Object> updateStatusMap(HttpServletRequest request){
+    @RequestMapping(value ="/updateBaseInfo",method = RequestMethod.POST)
+    public Map<String,Object> updateBaseInfo(HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
         StringBuilder sql=new StringBuilder("UPDATE T_BASE_INFO_SYS t");
         try {
@@ -79,7 +79,7 @@ public class OtherController {
             params.add(content);
             params.add(id);
             if("1".equals(type)){
-                sql.append(" set t.STATUSMAP=?");
+                sql.append(" set t.LISTFORMATTER=?");
             }else{
                 sql.append(" set t.URL=?");
             }
