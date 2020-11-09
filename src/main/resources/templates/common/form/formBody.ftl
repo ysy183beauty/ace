@@ -37,6 +37,7 @@
        <#if item.queryformatter??>
                <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
                <div class="col-sm-${smIndex}">
+                <input type="hidden" value="请选择${item.fieldlabel}" id="${item.fieldname}_select">
                <select id="${item.fieldname}" name="${item.fieldname}" class="form-control" required='${required?string ("true","false")}'>
                    <option value="">请选择</option>
                    <#assign labText=''/>
@@ -60,6 +61,7 @@
         <#elseif item.url??>
                <label class="col-sm-2 control-label" ><span style="color: ${color}">*</span>${item.fieldlabel}</label>
                <div class="col-sm-${smIndex}">
+               <input type="hidden" value="请选择${item.fieldlabel}" id="${item.fieldname}_select">
                <select class="form-control" name="${item.fieldname}" id="${item.fieldname}" required='${required?string ("true","false")}'>
                </select>
            </div>

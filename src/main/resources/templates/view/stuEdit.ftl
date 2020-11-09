@@ -13,5 +13,13 @@
 <#assign formListMult=formListMult?eval/>
 <#assign buttonOper=buttonOper?eval/>
 <@form formListMult formListOther buttonOper/>
+<script type="text/javascript">
+    function doSave() {
+        var result=doCheck();
+        if(result){//校验通过
+
+        }
+    }
+</script>
 </body>
 </html>
