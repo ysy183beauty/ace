@@ -1,4 +1,4 @@
-<#macro formBody formListMult formListOther buttonOper>
+<#macro formBody tableId formListMult formListOther buttonOper>
 <#include "../frame/urlRoot.ftl"/>
 <#include "forButton.ftl"/>
 <!-- 引入bootstrap样式 -->
@@ -9,7 +9,7 @@
 <script src="${ctx}/static/assets/layer/layer.js"></script>
 <script src="${ctx}/static/assets/My97DatePicker/WdatePicker.js"></script>
 <script src="${ctx}/static/assets/js/common/common.js"></script>
-<form class="form-horizontal" role="form" style="margin: 5px;width: 95%;">
+<form class="form-horizontal" role="form" style="margin: 5px;width: 95%;" id="${tableId}_form">
 <#--如果集合不为空 -->
 <#if formListOther?? && (formListOther?size > 0) >
     <#--获取集合的长度 -->

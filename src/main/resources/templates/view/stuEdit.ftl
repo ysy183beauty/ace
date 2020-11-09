@@ -9,10 +9,11 @@
     <#include "../common/form/form.ftl"/>
 </head>
 <body>
+<#assign tableId="studentTable-info-id">
 <#assign formListOther=formListOther?eval/>
 <#assign formListMult=formListMult?eval/>
 <#assign buttonOper=buttonOper?eval/>
-<@form formListMult formListOther buttonOper/>
+<@form tableId formListMult formListOther buttonOper/>
 <script type="text/javascript">
     function doSave() {
         var result=doCheck();
