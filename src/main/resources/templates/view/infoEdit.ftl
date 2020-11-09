@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <#include "../common/frame/urlRoot.ftl"/>
     <#include "../common/form/form.ftl"/>
+    <script type="text/javascript" src="${ctx}/static/assets/js/common/common.js"></script>
 </head>
 <body>
-<#assign tableId="InfoTable-info-id">
+<#assign tableId="infoform">
 <#assign formListOther=formListOther?eval/>
 <#assign formListMult=formListMult?eval/>
 <#assign buttonOper=buttonOper?eval/>
@@ -18,7 +19,7 @@
     function doSave() {
         var result=doCheck();
         if(result){//校验通过
-
+           var data=dealObj.getFormData('${tableId}');
         }
     }
 </script>
