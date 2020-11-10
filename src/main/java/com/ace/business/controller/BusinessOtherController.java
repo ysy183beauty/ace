@@ -1,5 +1,6 @@
 package com.ace.business.controller;
 
+import com.ace.business.entity.TStudent;
 import com.ace.common.service.CommonService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +31,9 @@ public class BusinessOtherController {
             StringBuilder sql=new StringBuilder("INSERT INTO T_STUDENT(ID,NAME,GID,CID,STARTDATE,ENDDATE,INTRODUCE,SEX,ADDRESS,AGE) ");
             sql.append("values(ID_SEQ.nextval,?,?,?,?,?,?,?,?,?)");
             //转换为json
-            JSONObject jsonObject = JSONObject.parseObject(data);
-            params.add(jsonObject.get("NAME"));
-            params.add(jsonObject.get("GRADENAME"));
-            params.add(jsonObject.get("CLASSNAME"));
-            params.add(jsonObject.get("STARTDATE"));
-            params.add(jsonObject.get("ENDDATE"));
-            params.add(jsonObject.get("INTRODUCE"));
-            params.add(jsonObject.get("SEX"));
-            params.add(jsonObject.get("ADDRESS"));
-            params.add(jsonObject.get("AGE"));
-            commonService.update(sql.toString(),params.toArray());
+            TStudent tStudent = JSONObject.parseObject(data, TStudent.class);
+            System.out.println(tStudent);
+            //commonService.update(sql.toString(),params.toArray());
             map.put("status",true);
         } catch (Exception e) {
             e.printStackTrace();

@@ -97,14 +97,23 @@
                       placeholder="请输入${item.fieldlabel}" maxlength="${item.fieldlength}"/>
            </div>
         <#elseif item.fieldtype=='DATE'>
-             <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
-             <div class="col-md-${smIndex}">
-                 <input class="form-control Wdate" readonly id="${fieldname}"
-                        onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"
-                        name="${fieldname}" type="text"
-                        placeholder="请输入${item.fieldlabel}" style="background-color: white;"
-                        required='${required?string ("true","false")}'/>
-            </div>
+                 <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
+                 <div class="col-md-${smIndex}">
+                     <input class="form-control Wdate" readonly id="${fieldname}"
+                            onClick="WdatePicker();"
+                            name="${fieldname}" type="text"
+                            placeholder="请输入${item.fieldlabel}" style="background-color: white;"
+                            required='${required?string ("true","false")}'/>
+                </div>
+         <#elseif item.fieldtype=='TIMESTAMP'>
+               <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
+               <div class="col-md-${smIndex}">
+                   <input class="form-control Wdate" readonly id="${fieldname}"
+                          onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"
+                          name="${fieldname}" type="text"
+                          placeholder="请输入${item.fieldlabel}" style="background-color: white;"
+                          required='${required?string ("true","false")}'/>
+               </div>
         <#else>
              <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
              <div class="col-sm-${smIndex}">

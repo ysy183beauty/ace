@@ -53,17 +53,17 @@
                             return false;
                         }
                     </#if>
-                 <#elseif item.fieldtype=='DATE'>
+                 <#elseif item.fieldtype=='DATE'||item.fieldtype=='TIMESTAMP'>
                        <#if item.isnull==0><#--必须填写校验 -->
                             if($("#${fieldname}").val().length<=0){
                                 layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                                 return false;
                             }
-                            <#if item.fieldname?lower_case?contains("start")>
-                                <#assign startDate=item.fieldname>
+                            <#if fieldname?contains("start")>
+                                <#assign startDate=fieldname>
                                 <#assign startTimeLabel=item.fieldlabel>
-                            <#elseif item.fieldname?lower_case?contains("end")>
-                                <#assign endDate=item.fieldname>
+                            <#elseif fieldname?contains("end")>
+                                <#assign endDate=fieldname>
                                 <#assign endTimeLabel=item.fieldlabel>
                             </#if>
                        </#if>
