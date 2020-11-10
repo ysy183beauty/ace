@@ -25,35 +25,37 @@
             <#--循环遍历 -->
             <#list formListOther as item>
                 <#if item.queryformatter??>
+                    <#--字段名称 -->
+                    <#assign fieldname=item.fieldname?lower_case?replace("_","")>
                     <#if item.isnull==0><#--必须填写校验 -->
-                        if($("#${item.fieldname}").val().length<=0){
-                            layer.alert($("#${item.fieldname}_select").val(), {skin: 'layui-layer-molv',icon: 0});
+                        if($("#${fieldname}").val().length<=0){
+                            layer.alert($("#${fieldname}_select").val(), {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
                     </#if>
                 <#elseif item.url??>
                     <#if item.isnull==0><#--必须填写校验 -->
-                        if($("#${item.fieldname}").val().length<=0){
-                            layer.alert($("#${item.fieldname}_select").val(), {skin: 'layui-layer-molv',icon: 0});
+                        if($("#${fieldname}").val().length<=0){
+                            layer.alert($("#${fieldname}_select").val(), {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
                     </#if>
                 <#elseif item.fieldtype=="NUMBER">
                     <#if item.isnull==0><#--必须填写校验 -->
                         <#--数字正则表达式的校验 -->
-                        if($("#${item.fieldname}").val().length<=0){
+                        if($("#${fieldname}").val().length<=0){
                             layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
                         var reg=/^\d+(\.\d+)?$/;
-                        if(!reg.test($("#${item.fieldname}").val())){
+                        if(!reg.test($("#${fieldname}").val())){
                             layer.alert("请输入正确的${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
                     </#if>
                  <#elseif item.fieldtype=='DATE'>
                        <#if item.isnull==0><#--必须填写校验 -->
-                            if($("#${item.fieldname}").val().length<=0){
+                            if($("#${fieldname}").val().length<=0){
                                 layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                                 return false;
                             }
@@ -67,7 +69,7 @@
                        </#if>
                 <#else>
                     <#if item.isnull==0><#--必须填写校验 -->
-                        if($("#${item.fieldname}").val().length<=0){
+                        if($("#${fieldname}").val().length<=0){
                             layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
@@ -78,8 +80,10 @@
         <#if formListMult?? && (formListMult?size > 0) >
             <#--循环遍历 -->
             <#list formListMult as item>
+                <#--字段名称 -->
+                <#assign fieldname=item.fieldname?lower_case?replace("_","")>
                  <#if item.isnull==0><#--必须填写校验 -->
-                        if($("#${item.fieldname}").val().length<=0){
+                        if($("#${fieldname}").val().length<=0){
                             layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});
                             return false;
                         }
