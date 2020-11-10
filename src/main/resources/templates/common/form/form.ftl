@@ -24,9 +24,9 @@
         <#if formListOther?? && (formListOther?size > 0) >
             <#--循环遍历 -->
             <#list formListOther as item>
+                <#--字段名称 -->
+                <#assign fieldname=item.fieldname?lower_case?replace("_","")>
                 <#if item.queryformatter??>
-                    <#--字段名称 -->
-                    <#assign fieldname=item.fieldname?lower_case?replace("_","")>
                     <#if item.isnull==0><#--必须填写校验 -->
                         if($("#${fieldname}").val().length<=0){
                             layer.alert($("#${fieldname}_select").val(), {skin: 'layui-layer-molv',icon: 0});
