@@ -44,8 +44,11 @@
         var url="/business/view/toAddStuPage";
         var widthX="90%";
         var widthY="90%";
-        title="添加数据信息";
-        dealObj.doOpenLayer(url,widthX,widthY,title);
+        var title="添加数据信息";
+        dealObj.doOpenLayer(url,widthX,widthY,title,function () {
+            layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
+            top.dealObj.info=undefined;
+        });
     }
 </script>
 </body>

@@ -19,6 +19,18 @@
         var result=doCheck();
         if(result){//校验通过
             var data=dealObj.getFormData('${tableId}');
+            //数据传递到后台
+            var params={
+                "data":data
+            };
+            dealObj.doAjax("/business/deal/saveStudentInfo",params,function (json) {
+                if(json.status){
+                    top.dealObj.info="success";
+                    dealObj.doCloseLayer();
+                }else{
+                    layer.alert("保存失败！", {skin: 'layui-layer-molv',icon: 0});
+                }
+            });
         }
     }
 </script>
