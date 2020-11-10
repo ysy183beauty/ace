@@ -34,11 +34,13 @@
             <#else>
               <#assign color='black'>
         </#if>
+        <#--字段名称 -->
+        <#assign fieldname=item.fieldname?lower_case?replace("_","")>
        <#if item.queryformatter??>
                <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
                <div class="col-sm-${smIndex}">
-                <input type="hidden" value="请选择${item.fieldlabel}" id="${item.fieldname}_select">
-               <select id="${item.fieldname}" name="${item.fieldname}" class="form-control" required='${required?string ("true","false")}'>
+                <input type="hidden" value="请选择${item.fieldlabel}" id="${fieldname}_select">
+               <select id="${fieldname}" name="${fieldname}" class="form-control" required='${required?string ("true","false")}'>
                    <option value="">请选择</option>
                    <#assign labText=''/>
                    <#assign labValue=''/>
@@ -61,8 +63,8 @@
         <#elseif item.url??>
                <label class="col-sm-2 control-label" ><span style="color: ${color}">*</span>${item.fieldlabel}</label>
                <div class="col-sm-${smIndex}">
-               <input type="hidden" value="请选择${item.fieldlabel}" id="${item.fieldname}_select">
-               <select class="form-control" name="${item.fieldname}" id="${item.fieldname}" required='${required?string ("true","false")}'>
+               <input type="hidden" value="请选择${item.fieldlabel}" id="${fieldname}_select">
+               <select class="form-control" name="${fieldname}" id="${fieldname}" required='${required?string ("true","false")}'>
                </select>
            </div>
                <script type="text/javascript">
@@ -75,7 +77,7 @@
                            for(var i=0;i<data.length;i++){
                                html+='<option value="'+data[i].LABVALUE+'">'+data[i].LABTEXT+'</option>';
                            }
-                           $("#${item.fieldname}").append(html);
+                           $("#${fieldname}").append(html);
                        }
                    });
                }
@@ -84,29 +86,29 @@
               <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
               <div class="col-sm-${smIndex}">
                <input class="form-control" required='${required?string ("true","false")}'
-                      id="${item.fieldname}" name="${item.fieldname}" type="text"
+                      id="${fieldname}" name="${fieldname}" type="text"
                       placeholder="请输入${item.fieldlabel}" maxlength="${item.fieldlength}"/>
            </div>
         <#elseif item.fieldtype=="NUMBER">
               <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
               <div class="col-sm-${smIndex}">
-               <input class="form-control" id="${item.fieldname}" required='${required?string ("true","false")}'
-                      name="${item.fieldname}" type="text"
+               <input class="form-control" id="${fieldname}" required='${required?string ("true","false")}'
+                      name="${fieldname}" type="text"
                       placeholder="请输入${item.fieldlabel}" maxlength="${item.fieldlength}"/>
            </div>
         <#elseif item.fieldtype=='DATE'>
              <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
              <div class="col-md-${smIndex}">
-                 <input class="form-control Wdate" readonly id="${item.fieldname}"
+                 <input class="form-control Wdate" readonly id="${fieldname}"
                         onClick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"
-                        name="${item.fieldname}" type="text"
+                        name="${fieldname}" type="text"
                         placeholder="请输入${item.fieldlabel}" style="background-color: white;"
                         required='${required?string ("true","false")}'/>
             </div>
         <#else>
              <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
              <div class="col-sm-${smIndex}">
-               <input class="form-control" id="${item.fieldname}" required='${required?string ("true","false")}' name="${item.fieldname}" type="text"
+               <input class="form-control" id="${fieldname}" required='${required?string ("true","false")}' name="${fieldname}" type="text"
                       placeholder="请输入${item.fieldlabel}" maxlength="${item.fieldlength}"/>
            </div>
        </#if>
@@ -134,11 +136,13 @@
         <#else>
             <#assign color='black'>
         </#if>
+        <#--字段名称 -->
+        <#assign fieldname=item.fieldname?lower_case?replace("_","")>
       <#if (item.fieldtype=='BLOB')||(item.fieldtype=='CLOB')>
           <div class="form-group">
               <label class="col-sm-2 control-label"><span style="color: ${color}">*</span>${item.fieldlabel}</label>
               <div class="col-sm-10">
-                <textarea class="form-control" rows="4" id="${item.fieldname}" name="${item.fieldname}"
+                <textarea class="form-control" rows="4" id="${fieldname}" name="${fieldname}"
                           placeholder="请输入${item.fieldlabel}" required='${required?string ("true","false")}' maxlength="${item.fieldlength}"></textarea>
               </div>
           </div>

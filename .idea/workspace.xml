@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="69a9c333-ea0e-4027-b8c6-b000d4fe921f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ace/business/controller/BusinessOtherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ace/business/controller/BusinessOtherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/view/stuEdit.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/view/stuEdit.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/view/stuList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/view/stuList.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ace/business/controller/BusinessOtherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ace/business/controller/BusinessOtherController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/form/formBody.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/form/formBody.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +109,7 @@
       <workItem from="1604798495974" duration="26687000" />
       <workItem from="1604833864952" duration="13733000" />
       <workItem from="1604887175008" duration="19333000" />
+      <workItem from="1604969415835" duration="1626000" />
     </task>
     <task id="LOCAL-00001" summary="一次提交">
       <created>1604501364000</created>
@@ -337,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604910834980</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="第五次提交">
+      <created>1604969494162</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1604969494162</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +352,8 @@
     <MESSAGE value="一次提交" />
     <MESSAGE value="第二次提交" />
     <MESSAGE value="第四次提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="第四次提交" />
+    <MESSAGE value="第五次提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="第五次提交" />
   </component>
   <component name="WindowStateProjectService">
     <state x="274" y="23" key="#Deployment" timestamp="1604501101308">
@@ -366,10 +372,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1604633120043" />
-    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604910829344">
+    <state x="179" y="0" key="CommitChangelistDialog2" timestamp="1604969488043">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604910829344" />
+    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604969488043" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1604500878111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
