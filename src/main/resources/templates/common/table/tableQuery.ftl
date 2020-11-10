@@ -8,13 +8,15 @@
     <#if queryFields?? && (queryFields?size > 0)>
         <#--遍历集合 -->
        <#list queryFields as item>
+           <#--字段名称 -->
+           <#assign fieldname=item.fieldname?lower_case?replace("_","")>
           <#--判断queryformatter是否为空 -->
           <#if item.queryformatter??>
                   <div class="form-group">
                   <label class="sr-only" for="product_line">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <select class="form-control" name="${item.fieldname}" id="${item.fieldname}">
+                      <select class="form-control" name="${fieldname}" id="${fieldname}">
                           <option value="">请选择</option>
                           <#assign labText=''/>
                           <#assign labValue=''/>
@@ -40,7 +42,7 @@
                       <label class="sr-only" for="product_line">${item.fieldlabel}</label>
                       <div class="input-group">
                           <div class="input-group-addon">${item.fieldlabel}</div>
-                          <select class="form-control" name="${item.fieldname}" id="${item.fieldname}">
+                          <select class="form-control" name="${fieldname}" id="${fieldname}">
                           </select>
                       </div>
                   </div>
@@ -54,7 +56,7 @@
                                   for(var i=0;i<data.length;i++){
                                       html+='<option value="'+data[i].LABVALUE+'">'+data[i].LABTEXT+'</option>';
                                   }
-                                  $("#${item.fieldname}").append(html);
+                                  $("#${fieldname}").append(html);
                               }
                           });
                       }
@@ -64,7 +66,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" maxlength="${item.fieldlength}" name="${item.fieldname}" id="${item.fieldname}">
+                      <input type="text" class="form-control" maxlength="${item.fieldlength}" name="${fieldname}" id="${fieldname}">
                   </div>
               </div>
               <#elseif item.fieldtype=='BLOB'||item.fieldtype=='CLOB'>
@@ -72,7 +74,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <textarea class="form-control" name="${item.fieldname}" id="${item.fieldname}" maxlength="${item.fieldlength}"></textarea>
+                      <textarea class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}"></textarea>
                   </div>
               </div>
               <#elseif item.fieldtype=='VARCHAR2'>
@@ -80,7 +82,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" name="${item.fieldname}" id="${item.fieldname}" maxlength="${item.fieldlength}">
+                      <input type="text" class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
                   </div>
               </div>
                <#--时间-->
@@ -89,8 +91,8 @@
                      <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                      <div class="input-group">
                          <div class="input-group-addon">${item.fieldlabel}</div>
-                         <input type="text" class="form-control Wdate" name="${item.fieldname}"
-                                id="${item.fieldname}" readonly maxlength="${item.fieldlength}" onClick="WdatePicker();"
+                         <input type="text" class="form-control Wdate" name="${fieldname}"
+                                id="${fieldname}" readonly maxlength="${item.fieldlength}" onClick="WdatePicker();"
                                 style="background-color: white;">
                      </div>
                  </div>
@@ -99,7 +101,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" name="${item.fieldname}" id="${item.fieldname}" maxlength="${item.fieldlength}">
+                      <input type="text" class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
                   </div>
               </div>
           </#if>
