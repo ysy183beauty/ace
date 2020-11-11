@@ -1,5 +1,6 @@
 <#macro tableQuery queryFields>
 <#include "../frame/urlRoot.ftl"/>
+<#include "../frame/msgTip.ftl"/>
 <#--引入Jquery -->
 <script type="text/javascript" src="${ctx}/static/assets/js/jquery.min.js"></script>
 <script src="${ctx}/static/assets/My97DatePicker/WdatePicker.js"></script>
@@ -60,7 +61,7 @@
                                   }
                                   $("#${fieldname}").append(html);
                               }
-                          });
+                          },false);
                       }
                   </script>
               <#elseif item.fieldtype=='NUMBER'>

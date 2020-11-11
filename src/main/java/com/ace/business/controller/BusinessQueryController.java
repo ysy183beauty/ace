@@ -33,11 +33,35 @@ public class BusinessQueryController extends CommonController {
 
     @ResponseBody
     @RequestMapping(value ="/selectOrgs",method = RequestMethod.POST)
-    public Map<String, Object> selectOrgs(Integer offset, Integer limit){
-        StringBuilder sb=new StringBuilder("SELECT g.*,p.PRO_NAME FROM T_ORG g LEFT JOIN T_PROVICE p ON g.PROVICE_ID=p.PRO_ID");
+    public Map<String, Object> selectOrgs(Integer offset, Integer limit,String org_name,String status,String provice_id){
+        String sql="SELECT g.*,p.PRO_NAME FROM T_ORG g LEFT JOIN T_PROVICE p ON g.PROVICE_ID=p.PRO_ID";
+        StringBuilder sb=new StringBuilder();
         List<Object> params=new ArrayList<>();
+        if(!"".equals(org_name)){
+            sb.append(" where org_name like ?");
+            params.add("%"+org_name+"%");
+        }
+        if(!"".equals(status)){
+            if(sb.length()>0){
+                sb.append(" and status=?");
+            }else{
+                sb.append(" where status=?");
+            }
+            params.add(status);
+        }
+        if(!"".equals(provice_id)){
+            if(sb.length()>0){
+                sb.append(" and provice_id=?");
+            }else{
+                sb.append(" where provice_id=?");
+            }
+            params.add(provice_id);
+        }
         try {
-            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+             if(sb.length()>0){
+                 sql+=sb;
+             }
+            map=super.queryCommonInfo(offset,limit,sql,params,"oracle");
         } catch (Exception e) {
             e.printStackTrace();
             map=new HashMap<>();
