@@ -27,7 +27,7 @@
     }
     //批量删除数据信息
     function doMulDel() {
-       var url="";
+       var url="/business/deal/deleteMutilInfo";
        dealObj.delMultiRows('${tableId}',url);
     }
     //重置

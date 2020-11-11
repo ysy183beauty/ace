@@ -71,4 +71,29 @@ public class BusinessOtherController extends CommonController {
         }
         return map;
     }
+    @ResponseBody
+    @RequestMapping(value ="/deleteMutilInfo",method = RequestMethod.POST)
+    public Map<String,Object> deleteMutilInfo(HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        String data=request.getParameter("data");
+        try {
+            JSONArray array=JSONArray.parseArray(data);
+            List<Map<String,Object>> params=new ArrayList<>();
+            JSONObject obj;
+            for(int i=0;i<array.size();i++){
+                obj=JSONObject.parseObject(array.get(i)+"");
+                Map<String,Object> m=new HashMap<>();
+                m.put("aid",obj.get("aid"));
+                params.add(m);
+            }
+            //删除数据信息
+            String sql="delete from T_INFO where AID=:aid";
+            commonService.batchUpdate(params,sql);
+            map.put("status",true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",false);
+        }
+        return map;
+    }
 }

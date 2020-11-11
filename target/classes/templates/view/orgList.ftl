@@ -28,14 +28,7 @@
     //删除信息
     function doDel(row) {
        var url="/business/deal/deleteOrg";
-       dealObj.delSingleRow(row,url,function (json) {
-            if(json.status){
-                layer.alert("删除成功！", {skin: 'layui-layer-molv',icon: 1});
-                this.doQuery();
-            }else{
-                layer.alert("删除失败！", {skin: 'layui-layer-molv',icon: 0});
-            }
-       });
+       dealObj.delSingleRow('${tableId}',row,url);
     }
     //重置
     function doReset() {
