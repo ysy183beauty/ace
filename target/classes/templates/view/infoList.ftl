@@ -14,10 +14,10 @@
 <body>
 <#assign tableId="table-list-id"/>
 <#assign url="/business/query/selectAllInfos"/>
-<#assign isSingleSelect=true/>
-<#assign operateMap={"edit":true,"remove":true}/>
+<#assign isSingleSelect=false/>
+<#assign operateMap={"edit":true,"remove":false}/>
 <#assign queryFields=queryFields?eval/>
-<#assign operInfos="query,reset,add"/>
+<#assign operInfos="query,reset,add,mulDel"/>
 <#assign cols=cols?eval/>
 <@table tableId url cols isSingleSelect operateMap queryFields operInfos/>
 <script type="text/javascript">
@@ -25,11 +25,9 @@
     function doEdit(row) {
         console.log(row);
     }
-    //删除信息
-    function doDel(row) {
-        layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
-            layer.msg("确定");
-        });
+    //批量删除数据信息
+    function doMulDel() {
+
     }
     //重置
     function doReset() {

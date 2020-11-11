@@ -90,12 +90,41 @@ var dealObj={
         top.layer.close(index);
     },
     //删除数据信息
-    delSingleRow:function (row,url,fn) {
+    delSingleRow:function (domId,row,url) {
         layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
              var params={
                  "data":JSON.stringify(row)
              };
-            dealObj.doAjax(url,params,fn);
+            dealObj.doAjax(url,params,function (json) {
+                if(json.status){
+                    layer.alert("删除成功！", {skin: 'layui-layer-molv',icon: 1});
+                    dealObj.doQuery(domId);//再次执行查询
+                }else{
+                    layer.alert("删除失败！", {skin: 'layui-layer-molv',icon: 0});
+                }
+            });
+        });
+    },
+    //删除多行数据信息
+    delMultiRows:function (domId,url) {
+        // 获取当前行
+        var rows=$('#'+domId+'').bootstrapTable('getSelections');
+        if(rows.length==0){
+            layer.alert("请选择数据信息", {skin: 'layui-layer-molv',icon: 0});
+            return false;
+        }
+        layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
+            var params={
+                "data":JSON.stringify(rows)
+            };
+            dealObj.doAjax(url,params,function (json) {
+                if(json.status){
+                    layer.alert("删除成功！", {skin: 'layui-layer-molv',icon: 1});
+                    this.doQuery();
+                }else{
+                    layer.alert("删除失败！", {skin: 'layui-layer-molv',icon: 0});
+                }
+            });
         });
     }
 };

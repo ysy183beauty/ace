@@ -98,7 +98,9 @@
               html+='<i class="glyphicon glyphicon-pencil"></i>编辑</a>';
           </#if>
           if (html!=''){
-              html+=' | ';
+              <#if removeInfo==true>
+                 html+=' | ';
+              </#if>
           }
           <#if removeInfo==true>
              html+='<a class="remove" href="javascript:void(0)"  title="Delete Item" style="text-decoration:none">';
