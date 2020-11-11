@@ -88,5 +88,14 @@ var dealObj={
     doCloseLayer:function () {
         var index = parent.layer.getFrameIndex(window.name);
         top.layer.close(index);
+    },
+    //删除数据信息
+    delSingleRow:function (row,url,fn) {
+        layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
+             var params={
+                 "data":JSON.stringify(row)
+             };
+            dealObj.doAjax(url,params,fn);
+        });
     }
 };

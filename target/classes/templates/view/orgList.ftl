@@ -27,9 +27,15 @@
     }
     //删除信息
     function doDel(row) {
-        layer.confirm('您确定要删除数据吗?',{btn: ['确定', '取消'],title:"提示",skin: 'layui-layer-molv',icon: 3}, function(){
-            layer.msg("确定");
-        });
+       var url="/business/deal/deleteOrg";
+       dealObj.delSingleRow(row,url,function (json) {
+            if(json.status){
+                layer.alert("删除成功！", {skin: 'layui-layer-molv',icon: 1});
+                this.doQuery();
+            }else{
+                layer.alert("删除失败！", {skin: 'layui-layer-molv',icon: 0});
+            }
+       });
     }
     //重置
     function doReset() {
