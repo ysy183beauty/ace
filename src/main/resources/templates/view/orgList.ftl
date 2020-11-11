@@ -17,7 +17,7 @@
 <#assign isSingleSelect=true/>
 <#assign operateMap={"edit":true,"remove":true}/>
 <#assign queryFields=queryFields?eval/>
-<#assign operInfos="query,reset"/>
+<#assign operInfos="query,reset,add"/>
 <#assign cols=cols?eval/>
 <@table tableId url cols isSingleSelect operateMap queryFields operInfos/>
 <script type="text/javascript">
@@ -38,6 +38,18 @@
     //点击查询按钮
     function doQuery() {
         dealObj.doQuery('${tableId}');
+    }
+    //添加
+    function doAdd() {
+        var url="/business/view/toAddOrgPage";
+        var widthX="90%";
+        var widthY="90%";
+        var title="添加数据信息";
+        dealObj.doOpenLayer(url,widthX,widthY,title,function () {
+            layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
+            top.dealObj.info=undefined;
+            this.doQuery();
+        });
     }
 </script>
 </body>

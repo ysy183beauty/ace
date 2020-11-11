@@ -42,4 +42,11 @@ public class BusinessViewController extends CommonController {
         mv.setViewName("/view/stuEdit");
         return mv;
     }
+    //新增
+    @RequestMapping(value ="/toAddOrgPage")
+    public ModelAndView toAddOrgPage(){
+        ModelAndView mv=super.ForView(null,"t_org");
+        mv.setViewName("/view/orgEdit");
+        return mv;
+    }
 }

@@ -5,6 +5,7 @@ import com.ace.page.PageParam;
 import com.ace.page.Pagination;
 import com.ace.sysytem.entity.BaseInfoSys;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,7 @@ public class CommonController {
                 Map<String,Object> m=resultList.get(i);
                 for(String key:m.keySet()){
                     //替换所有的下划线和转换为小写
-                    obj.put(key.replaceAll("_","").toLowerCase(),m.get(key));
+                    obj.put(key.toLowerCase(),m.get(key));
                 }
                 rows.add(obj);
             }
@@ -147,6 +148,18 @@ public class CommonController {
         mv.addObject("formListMult",JSON.toJSONString(data.get("formListMult")));
         mv.addObject("formListOther",JSON.toJSONString(data.get("formListOther")));
         return mv;
+    }
+
+    /**
+     * form表单保存数据信息
+     * @param data json字符串
+     * @param sql sql语句
+     */
+    public void saveInfo(String data,String sql) throws Exception {
+        JSONArray arr=JSONArray.parseArray(data);
+        Map<String,Object> fieldInfo=(Map<String,Object>)arr.get(0);
+        Map<String,Object> fieldType=(Map<String,Object>)arr.get(1);
+        commonService.update(sql,fieldInfo,fieldType);
     }
 
 }

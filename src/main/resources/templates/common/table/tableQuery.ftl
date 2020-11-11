@@ -28,7 +28,9 @@
                                   <#if index==1>
                                       <#assign labText=st/>
                                   </#if>
-                                  <#assign labValue=st/>
+                                  <#if index==0>
+                                      <#assign labValue=st/>
+                                  </#if>
                                   <#assign index=index+1>
                               </#list>
                               <option value="${labValue}">${labText}</option>

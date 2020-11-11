@@ -9,7 +9,7 @@
         <#--遍历集合 -->
        <#list queryFields as item>
            <#--字段名称 -->
-           <#assign fieldname=item.fieldname?lower_case?replace("_","")>
+           <#assign fieldname=item.fieldname?lower_case>
           <#--判断queryformatter是否为空 -->
           <#if item.queryformatter??>
                   <div class="form-group">
@@ -28,7 +28,9 @@
                                   <#if index==1>
                                       <#assign labText=st/>
                                   </#if>
-                                  <#assign labValue=st/>
+                                  <#if index==0>
+                                      <#assign labValue=st/>
+                                  </#if>
                                   <#assign index=index+1>
                               </#list>
                               <option value="${labValue}">${labText}</option>

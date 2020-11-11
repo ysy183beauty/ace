@@ -25,7 +25,7 @@
             <#--循环遍历 -->
             <#list formListOther as item>
                 <#--字段名称 -->
-                <#assign fieldname=item.fieldname?lower_case?replace("_","")>
+                <#assign fieldname=item.fieldname?lower_case>
                 <#if item.queryformatter??>
                     <#if item.isnull==0><#--必须填写校验 -->
                         if($("#${fieldname}").val().length<=0){
@@ -81,7 +81,7 @@
             <#--循环遍历 -->
             <#list formListMult as item>
                 <#--字段名称 -->
-                <#assign fieldname=item.fieldname?lower_case?replace("_","")>
+                <#assign fieldname=item.fieldname?lower_case>
                  <#if item.isnull==0><#--必须填写校验 -->
                         if($("#${fieldname}").val().length<=0){
                             layer.alert("请输入${item.fieldlabel}", {skin: 'layui-layer-molv',icon: 0});

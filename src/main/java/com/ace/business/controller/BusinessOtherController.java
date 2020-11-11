@@ -1,5 +1,6 @@
 package com.ace.business.controller;
 
+import com.ace.common.controller.CommonController;
 import com.ace.common.service.CommonService;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping(value ="/business/deal")
-public class BusinessOtherController {
+public class BusinessOtherController extends CommonController {
     @Autowired
     private CommonService commonService;
     @ResponseBody
@@ -24,10 +25,25 @@ public class BusinessOtherController {
             String data=request.getParameter("data");
             StringBuilder sql=new StringBuilder("INSERT INTO T_STUDENT(ID,NAME,GID,CID,SEX,AGE,STARTDATE,ENDDATE,ADDRESS,INTRODUCE) ");
             sql.append("values(ID_SEQ.nextval,:name,:gid,:cid,:sex,:age,:startdate,:enddate,:address,:introduce)");
-            JSONArray arr=JSONArray.parseArray(data);
-            Map<String,Object> fieldInfo=(Map<String,Object>)arr.get(0);
-            Map<String,Object> fieldType=(Map<String,Object>)arr.get(1);
-            commonService.update(sql.toString(),fieldInfo,fieldType);
+            super.saveInfo(data,sql.toString());
+            map.put("status",true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",false);
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value ="/saveOrg",method = RequestMethod.POST)
+    public Map<String,Object> saveOrg(HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        try {
+            //获取数据信息
+            String data=request.getParameter("data");
+            StringBuilder sql=new StringBuilder("insert INTO T_ORG(ORG_ID,ORG_NAME,ORG_ADDRESS,STARTTIME,ENDTIME,STATUS,ORG_INFO,MONEY,PROVICE_ID) ");
+            sql.append("values(ID_SEQ.nextval,:org_name,:org_address,:starttime,:endtime,:status,:org_info,:money,:provice_id)");
+            super.saveInfo(data,sql.toString());
             map.put("status",true);
         } catch (Exception e) {
             e.printStackTrace();

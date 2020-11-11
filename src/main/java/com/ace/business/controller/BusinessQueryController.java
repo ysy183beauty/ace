@@ -34,7 +34,7 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectOrgs",method = RequestMethod.POST)
     public Map<String, Object> selectOrgs(Integer offset, Integer limit){
-        StringBuilder sb=new StringBuilder("SELECT * FROM T_ORG");
+        StringBuilder sb=new StringBuilder("SELECT g.*,p.PRO_NAME FROM T_ORG g LEFT JOIN T_PROVICE p ON g.PROVICE_ID=p.PRO_ID");
         List<Object> params=new ArrayList<>();
         try {
             map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
@@ -67,7 +67,7 @@ public class BusinessQueryController extends CommonController {
     @ResponseBody
     @RequestMapping(value ="/selectAllProvice",method = RequestMethod.POST)
     public List<SelectEntity> selectAllProvice(){
-        String sql="SELECT g.ORG_CODE as labValue,g.ORG_PROVICE as labText FROM T_ORG g GROUP BY g.ORG_CODE,g.ORG_PROVICE";
+        String sql="SELECT p.PRO_ID AS labValue,p.PRO_NAME AS labText FROM T_PROVICE p";
         List<Object> params=new ArrayList<>();
         List<SelectEntity> list=commonService.selectAllRecords(sql,params.toArray());
         return list;
