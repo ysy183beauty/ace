@@ -48,6 +48,7 @@
         dealObj.doOpenLayer(url,widthX,widthY,title,function () {
             layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
             top.dealObj.info=undefined;
+            this.doQuery();
         });
     }
 </script>

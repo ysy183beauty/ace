@@ -1,26 +1,27 @@
 package com.ace.business.entity;
-import java.sql.Timestamp;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.util.Date;
+
 public class TStudent {
-  private String id;
+  private Integer id;
   private String name;
-  private String gid;
-  private String cid;
-  private Timestamp startdate;
-  private Timestamp enddate;
-  private String introduce;
+  private Integer gid;
+  private Integer cid;
+  private Date startdate;
+  private Date enddate;
+  private Clob introduce;
   private String sex;
-  private String address;
-  private String age;
+  private Clob address;
+  private Integer age;
 
-
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
-
 
   public String getName() {
     return name;
@@ -30,52 +31,37 @@ public class TStudent {
     this.name = name;
   }
 
-
-  public String getGid() {
+  public Integer getGid() {
     return gid;
   }
 
-  public void setGid(String gid) {
+  public void setGid(Integer gid) {
     this.gid = gid;
   }
 
-
-  public String getCid() {
+  public Integer getCid() {
     return cid;
   }
 
-  public void setCid(String cid) {
+  public void setCid(Integer cid) {
     this.cid = cid;
   }
 
-
-  public Timestamp getStartdate() {
+  public Date getStartdate() {
     return startdate;
   }
 
-  public void setStartdate(Timestamp startdate) {
+  public void setStartdate(Date startdate) {
     this.startdate = startdate;
   }
 
-
-  public Timestamp getEnddate() {
+  public Date getEnddate() {
     return enddate;
   }
 
-  public void setEnddate(Timestamp enddate) {
+  public void setEnddate(Date enddate) {
     this.enddate = enddate;
   }
-
-
-  public String getIntroduce() {
-    return introduce;
-  }
-
-  public void setIntroduce(String introduce) {
-    this.introduce = introduce;
-  }
-
-
   public String getSex() {
     return sex;
   }
@@ -84,22 +70,27 @@ public class TStudent {
     this.sex = sex;
   }
 
-
-  public String getAddress() {
+  public Clob getAddress() {
     return address;
   }
 
-  public void setAddress(String address) {
+  public void setAddress(Clob address) {
     this.address = address;
   }
 
-
-  public String getAge() {
+  public Integer getAge() {
     return age;
   }
 
-  public void setAge(String age) {
+  public void setAge(Integer age) {
     this.age = age;
   }
 
+  public Clob getIntroduce() {
+    return introduce;
+  }
+
+  public void setIntroduce(Clob introduce) {
+    this.introduce = introduce;
+  }
 }

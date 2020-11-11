@@ -56,4 +56,9 @@ public class CommonServiceImpl implements CommonService {
         return commonDao.selectListAndQueryInfo(tableName);
     }
 
+    @Override
+    public int update(String sql, Map<String, Object> data, Map<String, Object> types) throws Exception {
+        return commonDao.update(sql,data,types);
+    }
+
 }

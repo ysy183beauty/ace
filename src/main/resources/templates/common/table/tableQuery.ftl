@@ -9,7 +9,7 @@
         <#--遍历集合 -->
        <#list queryFields as item>
            <#--字段名称 -->
-           <#assign fieldname=item.fieldname?lower_case?replace("_","")>
+           <#assign fieldname=item.fieldname?lower_case>
           <#--判断queryformatter是否为空 -->
           <#if item.queryformatter??>
                   <div class="form-group">

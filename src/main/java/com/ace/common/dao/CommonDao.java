@@ -68,4 +68,13 @@ public interface CommonDao {
      * @return
      */
     Map<String,List> selectListAndQueryInfo(String tableName);
+
+    /**
+     * 修改数据含有时间和clob类型
+     * @param sql sql语句
+     * @param data 数据格
+     * @param types 字段类型,fieldname:date
+     * @return
+     */
+    int update(String sql,Map<String,Object> data,Map<String,Object> types) throws Exception;
 }

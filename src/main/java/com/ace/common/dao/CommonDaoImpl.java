@@ -6,13 +6,20 @@ import com.ace.sysytem.entity.BaseInfoSys;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
+import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,6 +114,44 @@ public class CommonDaoImpl implements CommonDao {
             e.printStackTrace();
         }
         return map;
+    }
+
+    @Override
+    public int update(String sql,Map<String, Object> data, Map<String, Object> types){
+        DateFormat sdf=null;
+        String dataType=null;
+        NamedParameterJdbcTemplate jdbcTemplateObject = new NamedParameterJdbcTemplate(jdbcTemplate.getDataSource());
+        MapSqlParameterSource in = new MapSqlParameterSource();
+        try {
+            for(String key:data.keySet()){
+                dataType=types.get(key).toString();
+                if("DATE".equals(dataType)){
+                    if(data.get(key)!=null){
+                        //yyyy-MM-dd HH:mm:ss格式的时间
+                        if(data.get(key).toString().length()==19){
+                            sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        }else if(data.get(key).toString().length()==10){
+                            sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        }
+                        in.addValue(key,sdf.parse(data.get(key).toString()));
+                    }
+                }else if("CLOB".equals(dataType)){
+                    in.addValue(key,new SqlLobValue(data.get(key)+"", new DefaultLobHandler()), Types.CLOB);
+                }else if("BLOB".equals(dataType)){
+                    in.addValue(key,new SqlLobValue(data.get(key)+"", new DefaultLobHandler()), Types.BLOB);
+                }else if("TIMESTAMP".equals(dataType)){
+                    Timestamp time = Timestamp.valueOf(data.get(key)+"");
+                    in.addValue(key,time);
+                }else{
+                    in.addValue(key,data.get(key));
+                }
+            }
+            jdbcTemplateObject.update(sql, in);
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public List changeList(List<Map<String,Object>> list){

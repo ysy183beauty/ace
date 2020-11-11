@@ -72,12 +72,17 @@ var dealObj={
     },
     //获取表单数据信息
     getFormData:function (domId) {
+        var result=[];
+        var fieldInfo={};
         var data = {};
         var t = $('#'+domId+'').serializeArray();
         $.each(t, function() {
+            fieldInfo[this.name]=$('#'+this.name+'').attr("dataType");
             data [this.name] = this.value;
         });
-        return JSON.stringify(data);
+        result.push(data);
+        result.push(fieldInfo);
+        return JSON.stringify(result);
     },
     //关闭跳出层
     doCloseLayer:function () {
