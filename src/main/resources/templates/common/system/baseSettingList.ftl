@@ -117,7 +117,8 @@
                         source:[
                             {value:'NUMBER', text: "NUMBER"}, {value:'VARCHAR2', text: "VARCHAR2"},
                             {value:'BLOB', text: "BLOB"},{value:'DATE', text: "DATE"},
-                            {value:'CLOB', text: "CLOB"}
+                            {value:'CLOB', text: "CLOB"},{value:'TIMESTAMP', text: "TIMESTAMP"},
+                            {value:'TIMESTAMP', text: "TIMESTAMP"}
                          ],
                         title: "字段类型",           //编辑框的标题
                         disabled: false,             //是否禁用编辑
