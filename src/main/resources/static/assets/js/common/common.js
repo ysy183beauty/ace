@@ -128,11 +128,11 @@ var dealObj={
         });
     },
     //列表新增信息
-    addList:function (url,widthX,widthY,title) {
+    addList:function (url,widthX,widthY,title,domId) {
         dealObj.doOpenLayer(url,widthX,widthY,title,function () {
             layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
             top.dealObj.info=undefined;
-            dealObj.doQuery();
+            dealObj.doQuery(domId);
         });
     },
     //form表单新增信息

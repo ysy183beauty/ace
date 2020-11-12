@@ -45,7 +45,7 @@
         var widthX="90%";
         var widthY="90%";
         var title="添加数据信息";
-        dealObj.addList(url,widthX,widthY,title);
+        dealObj.addList(url,widthX,widthY,title,'${tableId}');
     }
 </script>
 </body>
