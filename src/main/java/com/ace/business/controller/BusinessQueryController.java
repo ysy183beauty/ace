@@ -19,11 +19,35 @@ public class BusinessQueryController extends CommonController {
     private Map<String,Object> map;
     @ResponseBody
     @RequestMapping(value ="/selectAllInfos",method = RequestMethod.POST)
-    public Map<String, Object> selectAllInfos(Integer offset, Integer limit){
-        StringBuilder sb=new StringBuilder("SELECT * FROM T_INFO");
+    public Map<String, Object> selectAllInfos(Integer offset, Integer limit,String name,String contact,String status){
+        String sql="SELECT * FROM T_INFO";
+        StringBuilder sb=new StringBuilder();
         List<Object> params=new ArrayList<>();
+        if(!"".equals(name)){
+            sb.append(" where name like ?");
+            params.add("%"+name+"%");
+        }
+        if(!"".equals(contact)){
+            if(sb.length()>0){
+                sb.append(" and contact like ?");
+            }else{
+                sb.append(" where contact like ?");
+            }
+            params.add("%"+contact+"%");
+        }
+        if(!"".equals(status)){
+            if(sb.length()>0){
+                sb.append(" and status=?");
+            }else{
+                sb.append(" where status=?");
+            }
+            params.add(status);
+        }
+        if(sb.length()>0){
+            sql+=sb;
+        }
         try {
-            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+            map=super.queryCommonInfo(offset,limit,sql,params,"oracle");
         } catch (Exception e) {
             e.printStackTrace();
             map=new HashMap<>();

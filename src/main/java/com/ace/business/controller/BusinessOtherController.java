@@ -36,6 +36,24 @@ public class BusinessOtherController extends CommonController {
     }
 
     @ResponseBody
+    @RequestMapping(value ="/saveInfo",method = RequestMethod.POST)
+    public Map<String,Object> saveInfo(HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        try {
+            //获取数据信息
+            String data=request.getParameter("data");
+            StringBuilder sql=new StringBuilder("INSERT INTO T_INFO(AID,NAME,ADDRESS,CONTACT,PHONE,REGION,LONGITUDE,LATITUDE,STATUS) ");
+            sql.append("values(ID_SEQ.nextval,:name,:address,:contact,:phone,:region,:longitude,:latitude,:status)");
+            super.saveInfo(data,sql.toString());
+            map.put("status",true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",false);
+        }
+        return map;
+    }
+
+    @ResponseBody
     @RequestMapping(value ="/saveOrg",method = RequestMethod.POST)
     public Map<String,Object> saveOrg(HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();

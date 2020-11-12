@@ -18,8 +18,9 @@
 <script type="text/javascript">
     function doSave() {
         var result=doCheck();
+        var url="/business/deal/saveInfo";
         if(result){//校验通过
-           var data=dealObj.getFormData('${tableId}');
+            dealObj.addForm('${tableId}',url);
         }
     }
 </script>

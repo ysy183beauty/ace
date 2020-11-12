@@ -43,8 +43,8 @@
         var url="/business/view/toAddPage";
         var widthX="90%";
         var widthY="90%";
-        title="添加数据信息";
-        dealObj.doOpenLayer(url,widthX,widthY,title);
+        var title="添加数据信息";
+        dealObj.addList(url,widthX,widthY,title);
     }
 </script>
 </body>

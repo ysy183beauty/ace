@@ -126,5 +126,29 @@ var dealObj={
                 }
             });
         });
+    },
+    //列表新增信息
+    addList:function (url,widthX,widthY,title) {
+        dealObj.doOpenLayer(url,widthX,widthY,title,function () {
+            layer.alert("保存成功！", {skin: 'layui-layer-molv',icon: 1});
+            top.dealObj.info=undefined;
+            dealObj.doQuery();
+        });
+    },
+    //form表单新增信息
+    addForm:function (domId,url) {
+        var data=dealObj.getFormData(domId);
+        //数据传递到后台
+        var params={
+            "data":data
+        };
+        dealObj.doAjax(url,params,function (json) {
+            if(json.status){
+                top.dealObj.info="success";
+                dealObj.doCloseLayer();
+            }else{
+                layer.alert("保存失败！", {skin: 'layui-layer-molv',icon: 0});
+            }
+        });
     }
 };
