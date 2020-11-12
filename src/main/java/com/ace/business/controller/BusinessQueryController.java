@@ -35,35 +35,13 @@ public class BusinessQueryController extends CommonController {
 
     @ResponseBody
     @RequestMapping(value ="/selectOrgs",method = RequestMethod.POST)
-    public Map<String, Object> selectOrgs(Integer offset, Integer limit,String org_name,String status,String provice_id){
+    public Map<String, Object> selectOrgs(String data,String fieldInfo){
+        String orderSql="  ORDER BY g.ORG_ID ASC";
         String sql="SELECT g.*,p.PRO_NAME FROM T_ORG g LEFT JOIN T_PROVICE p ON g.PROVICE_ID=p.PRO_ID";
-        StringBuilder sb=new StringBuilder();
-        List<Object> params=new ArrayList<>();
-        if(!"".equals(org_name)){
-            sb.append(" where org_name like ?");
-            params.add("%"+org_name+"%");
-        }
-        if(!"".equals(status)){
-            if(sb.length()>0){
-                sb.append(" and status=?");
-            }else{
-                sb.append(" where status=?");
-            }
-            params.add(status);
-        }
-        if(!"".equals(provice_id)){
-            if(sb.length()>0){
-                sb.append(" and provice_id=?");
-            }else{
-                sb.append(" where provice_id=?");
-            }
-            params.add(provice_id);
-        }
         try {
-             if(sb.length()>0){
-                 sql+=sb;
-             }
-            map=super.queryCommonInfo(offset,limit,sql,params,"oracle");
+            JSONObject dataObj=JSONObject.parseObject(data);
+            JSONObject fieldObj=JSONObject.parseObject(fieldInfo);
+            map=super.query(dataObj,fieldObj,sql,orderSql);
         } catch (Exception e) {
             e.printStackTrace();
             map=new HashMap<>();
@@ -73,13 +51,15 @@ public class BusinessQueryController extends CommonController {
 
     @ResponseBody
     @RequestMapping(value ="/selectStudents",method = RequestMethod.POST)
-    public Map<String, Object> selectStudents(Integer offset, Integer limit){
+    public Map<String, Object> selectStudents(String data,String fieldInfo){
         StringBuilder sb=new StringBuilder("SELECT t.ID,t.NAME,g.GRADENAME,c.CLASSNAME,t.SEX,t.AGE,t.STARTDATE,t.ENDDATE,");
         sb.append("t.INTRODUCE,t.ADDRESS ");
-        sb.append("FROM T_STUDENT t LEFT JOIN T_CLASS c on t.CID=c.ID LEFT JOIN T_GRADE g on t.GID=g.id ORDER BY t.ID asc");
-        List<Object> params=new ArrayList<>();
+        sb.append("FROM T_STUDENT t LEFT JOIN T_CLASS c on t.CID=c.ID LEFT JOIN T_GRADE g on t.GID=g.id ");
+        String orderSql="  ORDER BY t.ID ASC";
         try {
-            map=super.queryCommonInfo(offset,limit,sb.toString(),params,"oracle");
+            JSONObject dataObj=JSONObject.parseObject(data);
+            JSONObject fieldObj=JSONObject.parseObject(fieldInfo);
+            map=super.query(dataObj,fieldObj,sb.toString(),orderSql);
         } catch (Exception e) {
             e.printStackTrace();
             map=new HashMap<>();

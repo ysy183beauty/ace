@@ -70,11 +70,11 @@ public class CommonController {
                                 condition=" where ";
                             }
                             if(key.contains("start")){
-                                sb.append(" "+condition+" "+key+" >=to_date(?,"+format+")");
+                                sb.append(" "+condition+" "+key+" >=to_date(?,'"+format+"')");
                             }else if(key.contains("end")){
-                                sb.append(" "+condition+" "+key+" <=to_date(?,"+format+")");
+                                sb.append(" "+condition+" "+key+" <=to_date(?,'"+format+"')");
                             }else{
-                                sb.append(" "+condition+" "+key+" =to_date(?,"+format+")");
+                                sb.append(" "+condition+" "+key+" =to_date(?,'"+format+"')");
                             }
                             params.add(dataValue);
                         }else if("TIMESTAMP".equals(dataType)){
