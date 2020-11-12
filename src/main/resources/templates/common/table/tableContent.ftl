@@ -151,14 +151,19 @@
    }
    //加载form表单下的所有参数信息
      function queryParams(params) {
+         var fieldInfo={};
          var data = {};
          var t = $('#queryForm').serializeArray();
          $.each(t, function() {
+             fieldInfo[this.name]=$('#'+this.name+'').attr("dataType");
              data [this.name] = this.value;
          });
          data['offset']=params.offset;
          data['limit']=params.limit;
-         return data;
+         return {
+             "data":JSON.stringify(data),
+             "fieldInfo":JSON.stringify(fieldInfo)
+         };
      }
  </script>
 </#macro>

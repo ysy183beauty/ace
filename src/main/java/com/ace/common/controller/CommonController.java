@@ -10,7 +10,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +18,127 @@ import java.util.Map;
 public class CommonController {
     @Autowired
     private CommonService commonService;
+
+    /**
+     * 查询带上分页和查询条件信息
+     * @param dataObj 字段名称：字段值的JsonObject
+     * @param fieldObj 字段名称：类型的JsonObject
+     * @param sql sql语句
+     * @param orderSql 排序字段
+     * @return
+     */
+    public Map<String,Object> query(JSONObject dataObj,JSONObject fieldObj,String sql,String orderSql){
+        String format=null;
+        String condition;
+        List<Object> params=new ArrayList<>();//存放参数信息
+        StringBuilder sb=new StringBuilder();
+        String dataValue;
+        Map<String,Object> map=new HashMap<>();
+        String dataType;
+        try {
+            for(String key:dataObj.keySet()){
+                //分页参数不需要处理
+                if(!"offset".equals(key)&&!"limit".equals(key)){
+                    dataValue=dataObj.get(key)+"";
+                    if(!"".equals(dataValue)&&dataValue!=null){
+                        dataType=fieldObj.get(key).toString();//获取数据类型
+                        if("VARCHAR2".equals(dataType)){
+                             if(sb.length()>0){
+                                 condition=" and ";
+                             }else{
+                                 condition=" where ";
+                             }
+                             sb.append(" "+condition+""+key+" like ?");
+                             params.add("%"+dataValue+"%");//支持模糊查询
+                        }else if("NUMBER".equals(dataType)){
+                            if(sb.length()>0){
+                                condition=" and ";
+                            }else{
+                                condition=" where ";
+                            }
+                            sb.append(" "+condition+""+key+" =?");
+                            params.add(dataValue);//直接等于
+                        }else if("DATE".equals(dataType)){
+                            if(dataValue.length()==19){
+                                format="yyyy-mm-dd hh24:mi:ss";
+                            }else if(dataValue.length()==10){
+                                format="yyyy-mm-dd";
+                            }
+                            if(sb.length()>0){
+                                condition=" and ";
+                            }else{
+                                condition=" where ";
+                            }
+                            if(key.contains("start")){
+                                sb.append(" "+condition+" "+key+" >=to_date(?,"+format+")");
+                            }else if(key.contains("end")){
+                                sb.append(" "+condition+" "+key+" <=to_date(?,"+format+")");
+                            }else{
+                                sb.append(" "+condition+" "+key+" =to_date(?,"+format+")");
+                            }
+                            params.add(dataValue);
+                        }else if("TIMESTAMP".equals(dataType)){
+                            if(sb.length()>0){
+                                condition=" and ";
+                            }else{
+                                condition=" where ";
+                            }
+                            if(key.contains("start")){
+                                sb.append(" "+condition+" "+key+" >=TO_TIMESTAMP(?,'yyyy-mm-dd hh24:mi:ss.ff')");
+                            }else if(key.contains("end")){
+                                sb.append(" "+condition+" "+key+" <=TO_TIMESTAMP(?,'yyyy-mm-dd hh24:mi:ss.ff')");
+                            }else{
+                                sb.append(" "+condition+" "+key+" =TO_TIMESTAMP(?,'yyyy-mm-dd hh24:mi:ss.ff')");
+                            }
+                            params.add(dataValue);
+                        }else{
+                            if(sb.length()>0){
+                                condition=" and ";
+                            }else{
+                                condition=" where ";
+                            }
+                            sb.append(" "+condition+""+key+" =?");
+                            params.add(dataValue);//直接等于
+                        }
+                    }
+                }
+            }
+            sql=sql+sb+orderSql;//拼接成查询数据的sql语句
+            Integer offset=Integer.parseInt(dataObj.get("offset").toString());
+            Integer limit=Integer.parseInt(dataObj.get("limit").toString());
+            Integer pageIndex=0;
+            if(offset==0){
+                pageIndex=1;
+            }else{
+                pageIndex=(offset/limit)+1;
+            }
+            //分页参数设置
+            PageParam pageParam=new PageParam();
+            pageParam.setPage(pageIndex);
+            pageParam.setLimit(limit);
+            //查询分页信息
+            Pagination p = commonService.selectListByPage(sql, pageParam, params,"oracle");
+            List<Map<String,Object>> resultList = p.getResultList();
+            List<JSONObject> rows=new ArrayList<>();
+            for(int i=0;i<resultList.size();i++){
+                JSONObject obj=new JSONObject();
+                Map<String,Object> m=resultList.get(i);
+                for(String key:m.keySet()){
+                    //替换所有的下划线和转换为小写
+                    obj.put(key.toLowerCase(),m.get(key));
+                }
+                rows.add(obj);
+            }
+            map.put("rows",rows);
+            map.put("total",p.getTotalRows());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+
+
     /**
      * 分页数据新宁县
      * @param offset 当前页数

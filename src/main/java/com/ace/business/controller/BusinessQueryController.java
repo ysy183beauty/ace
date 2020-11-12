@@ -3,6 +3,7 @@ package com.ace.business.controller;
 import com.ace.common.controller.CommonController;
 import com.ace.common.entity.SelectEntity;
 import com.ace.common.service.CommonService;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,38 +20,15 @@ public class BusinessQueryController extends CommonController {
     private Map<String,Object> map;
     @ResponseBody
     @RequestMapping(value ="/selectAllInfos",method = RequestMethod.POST)
-    public Map<String, Object> selectAllInfos(Integer offset, Integer limit,String name,String contact,String status){
+    public Map<String, Object> selectAllInfos(String data,String fieldInfo){
         String sql="SELECT * FROM T_INFO";
-        StringBuilder sb=new StringBuilder();
-        List<Object> params=new ArrayList<>();
-        if(!"".equals(name)){
-            sb.append(" where name like ?");
-            params.add("%"+name+"%");
-        }
-        if(!"".equals(contact)){
-            if(sb.length()>0){
-                sb.append(" and contact like ?");
-            }else{
-                sb.append(" where contact like ?");
-            }
-            params.add("%"+contact+"%");
-        }
-        if(!"".equals(status)){
-            if(sb.length()>0){
-                sb.append(" and status=?");
-            }else{
-                sb.append(" where status=?");
-            }
-            params.add(status);
-        }
-        if(sb.length()>0){
-            sql+=sb;
-        }
+        String orderSql=" order by AID asc";
         try {
-            map=super.queryCommonInfo(offset,limit,sql,params,"oracle");
+            JSONObject dataObj=JSONObject.parseObject(data);
+            JSONObject fieldObj=JSONObject.parseObject(fieldInfo);
+            map=super.query(dataObj,fieldObj,sql,orderSql);
         } catch (Exception e) {
             e.printStackTrace();
-            map=new HashMap<>();
         }
         return map;
     }

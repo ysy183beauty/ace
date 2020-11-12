@@ -17,7 +17,7 @@
                   <label class="sr-only" for="product_line">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <select class="form-control" name="${fieldname}" id="${fieldname}">
+                      <select class="form-control" name="${fieldname}" id="${fieldname}" dataType="${item.fieldtype}">
                           <option value="">请选择</option>
                           <#assign labText=''/>
                           <#assign labValue=''/>
@@ -45,7 +45,7 @@
                       <label class="sr-only" for="product_line">${item.fieldlabel}</label>
                       <div class="input-group">
                           <div class="input-group-addon">${item.fieldlabel}</div>
-                          <select class="form-control" name="${fieldname}" id="${fieldname}">
+                          <select class="form-control" name="${fieldname}" id="${fieldname}" dataType="${item.fieldtype}">
                           </select>
                       </div>
                   </div>
@@ -69,7 +69,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" maxlength="${item.fieldlength}" name="${fieldname}" id="${fieldname}">
+                      <input type="text" class="form-control" dataType="${item.fieldtype}" maxlength="${item.fieldlength}" name="${fieldname}" id="${fieldname}">
                   </div>
               </div>
               <#elseif item.fieldtype=='BLOB'||item.fieldtype=='CLOB'>
@@ -77,7 +77,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <textarea class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}"></textarea>
+                      <textarea class="form-control" dataType="${item.fieldtype}" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}"></textarea>
                   </div>
               </div>
               <#elseif item.fieldtype=='VARCHAR2'>
@@ -85,7 +85,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
+                      <input type="text" class="form-control" dataType="${item.fieldtype}" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
                   </div>
               </div>
                <#--时间-->
@@ -94,7 +94,7 @@
                      <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                      <div class="input-group">
                          <div class="input-group-addon">${item.fieldlabel}</div>
-                         <input type="text" class="form-control Wdate" name="${fieldname}"
+                         <input type="text" dataType="${item.fieldtype}" class="form-control Wdate" name="${fieldname}"
                                 id="${fieldname}" readonly maxlength="${item.fieldlength}" onClick="WdatePicker();"
                                 style="background-color: white;">
                      </div>
@@ -104,7 +104,7 @@
                   <label class="sr-only" for="msg_type">${item.fieldlabel}</label>
                   <div class="input-group">
                       <div class="input-group-addon">${item.fieldlabel}</div>
-                      <input type="text" class="form-control" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
+                      <input type="text" class="form-control" dataType="${item.fieldtype}" name="${fieldname}" id="${fieldname}" maxlength="${item.fieldlength}">
                   </div>
               </div>
           </#if>
